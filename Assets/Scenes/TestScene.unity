@@ -648,7 +648,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1281661900}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bafeac478206ee45ac431b4fc2a1f30, type: 3}
   m_Name: 
@@ -1053,6 +1053,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1722751977 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212029654380306752, guid: 0a020f2727d1450468bf9130c2739a5c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1960297689}
 --- !u!50 &1734353771 stripped
 Rigidbody2D:
   m_PrefabParentObject: {fileID: 50030402377786522, guid: b1934e2f95cec9444b63aff5bf076185,
@@ -1350,11 +1355,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4051739804093964, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 84.93
+      value: 77.35
       objectReference: {fileID: 0}
     - target: {fileID: 4051739804093964, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 13.49
+      value: 15.19
       objectReference: {fileID: 0}
     - target: {fileID: 4051739804093964, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1400,6 +1405,15 @@ Prefab:
       propertyPath: m_SceneCamera
       value: 
       objectReference: {fileID: 1887078930}
+    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
+        type: 2}
+      propertyPath: m_PlayerSpriteRenderer
+      value: 
+      objectReference: {fileID: 1722751977}
+    - target: {fileID: 4051739804093964, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
   m_IsPrefabParent: 0

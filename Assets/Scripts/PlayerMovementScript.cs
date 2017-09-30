@@ -8,6 +8,8 @@ public class PlayerMovementScript : MonoBehaviour
 	public Transform m_PlayerTransform;
 	public Rigidbody2D m_PlayerRigidbody2D;
 	public CapsuleCollider2D m_PlayerCapsuleCollider2D;
+	public Animator m_PlayerAnimatorController;
+	public SpriteRenderer m_PlayerSpriteRenderer;
 
 	[Header("Ball Components")]
 	public Transform m_BallTransform;
@@ -100,6 +102,33 @@ public class PlayerMovementScript : MonoBehaviour
 
 		// Player Attack
 		Click();
+
+
+		// Update animations
+		m_PlayerAnimatorController.SetBool("Together",m_PlayerBallTogether);
+
+
+		if (m_PlayerRigidbody2D.velocity.x > 0  && m_PlayerTransform.localScale.x < 0)
+		{
+			m_PlayerTransform.localScale = new Vector3(1,1,1);
+			m_PlayerTransform.localPosition -= Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
+		}
+		if (m_PlayerRigidbody2D.velocity.x < 0 && m_PlayerTransform.localScale.x > 0)
+		{	
+			m_PlayerTransform.localScale = new Vector3(-1,1,1); 
+			m_PlayerTransform.localPosition += Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
+		}
+
+		if (m_PlayerRigidbody2D.velocity.x != 0)
+		{
+			m_PlayerAnimatorController.SetBool("Walking",true);
+		}
+		else
+		{
+			m_PlayerAnimatorController.SetBool("Walking",false);
+		}
+		
+		
 	}
 
 	void FixedUpdate()
@@ -229,10 +258,21 @@ public class PlayerMovementScript : MonoBehaviour
 			else if (m_PlayerBallTogether)
 			{
 				m_TargetBallPosition = m_PlayerTransform.position;
+
 			}
 
 			m_BallRigidbody2D.MovePosition(Vector2.SmoothDamp(m_BallRigidbody2D.position,m_TargetBallPosition,ref m_CurrentBallVelocity,m_BallSmooth,100f,Time.fixedDeltaTime));
 			
+
+			// LA GITANADA MOTHER
+			if (m_PlayerBallTogether && Vector3.Distance(m_PlayerTransform.position,m_BallTransform.position) < 4)
+			{
+				m_BallTransform.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+			}
+			else
+			{
+				m_BallTransform.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+			}
 		}
 		
 		
