@@ -108,12 +108,12 @@ public class PlayerMovementScript : MonoBehaviour
 		m_PlayerAnimatorController.SetBool("Together",m_PlayerBallTogether);
 
 
-		if (m_PlayerRigidbody2D.velocity.x > 0  && m_PlayerTransform.localScale.x < 0)
+		if (m_HorizontalInput > 0  && m_PlayerTransform.localScale.x < 0)
 		{
 			m_PlayerTransform.localScale = new Vector3(1,1,1);
 			m_PlayerTransform.localPosition -= Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
 		}
-		if (m_PlayerRigidbody2D.velocity.x < 0 && m_PlayerTransform.localScale.x > 0)
+		if (m_HorizontalInput < 0 && m_PlayerTransform.localScale.x > 0)
 		{	
 			m_PlayerTransform.localScale = new Vector3(-1,1,1); 
 			m_PlayerTransform.localPosition += Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
