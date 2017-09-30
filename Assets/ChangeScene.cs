@@ -9,7 +9,6 @@ public class ChangeScene : MonoBehaviour {
 
 	void Start()
 	{
-
 		Invoke("CanChange", 2f);
 	}
 
@@ -19,7 +18,7 @@ public class ChangeScene : MonoBehaviour {
 	{
 		m_CanChange = true;
 	}
-	
+
 
 	void Update () 
 	{
