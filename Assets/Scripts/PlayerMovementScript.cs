@@ -21,6 +21,7 @@ public class PlayerMovementScript : MonoBehaviour
 	[Header("Scene Camera")]
 	public Camera m_SceneCamera;
 
+
 	[Header("Player Movement Parameters")]
 	public float m_MovementSpeed;
 	public float m_FastMovementpeed;
@@ -38,6 +39,11 @@ public class PlayerMovementScript : MonoBehaviour
 	[Header("Health Parameters")]
 	public float m_RecoveryTime;
 	public float m_TimeBeforeDeath;
+	
+	[Header("Game Over Canvas")]
+	public GameObject m_GameOverCanvas;
+
+
 
 	
 
@@ -143,6 +149,7 @@ public class PlayerMovementScript : MonoBehaviour
 		
 			if (m_DeathTimer >= m_TimeBeforeDeath)
 			{
+				m_GameOverCanvas.SetActive(true);
 				m_PlayerDeath = true;
 			}
 		}

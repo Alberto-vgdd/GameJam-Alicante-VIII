@@ -5,15 +5,24 @@ using UnityEngine;
 public class GameOver : MonoBehaviour {
 
 	Animation m_Animation;
+	float timer;
+	float maxtimer;
 	// Use this for initialization
-	void Start () {
+	void Awake () 
+	{
 		m_Animation = GetComponent<Animation>();
+		m_Animation.Play();
+		timer = 0f;
+		maxtimer = 2f;
 	}
 	
-	public void TriggerGameOver(){
-
-		m_Animation.Play();
-		if(Input.anyKey) UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+	 void Update()
+	{
+		timer += Time.deltaTime;
+		if (timer > maxtimer)
+		{
+			if(Input.anyKey) UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+		}
 
 	}
 
