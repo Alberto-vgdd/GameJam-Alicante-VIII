@@ -1,21 +1,21 @@
 fileFormatVersion: 2
 guid: 3682d0bb96766a5428d962356459dee6
-timeCreated: 1506808946
+timeCreated: 1506812566
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: CosaQueTeRajaSpriteSheet_0
-    21300002: CosaQueTeRajaSpriteSheet_1
-    21300004: CosaQueTeRajaSpriteSheet_2
-    21300006: CosaQueTeRajaSpriteSheet_3
-    21300008: CosaQueTeRajaSpriteSheet_4
-    21300010: CosaQueTeRajaSpriteSheet_5
-    21300012: CosaQueTeRajaSpriteSheet_6
-    21300014: CosaQueTeRajaSpriteSheet_7
-    21300016: CosaQueTeRajaSpriteSheet_8
-    21300018: CosaQueTeRajaSpriteSheet_10
-    21300020: CosaQueTeRajaSpriteSheet_12
-    21300022: CosaQueTeRajaSpriteSheet_14
+    21300000: Movement1
+    21300002: Movement2
+    21300004: Movement3
+    21300006: Movement4
+    21300008: Death1
+    21300010: Death2
+    21300012: Death3
+    21300014: Death4
+    21300016: Attack1
+    21300018: Attack2
+    21300020: Attack3
+    21300022: Attack4
     21300024: CosaQueTeRajaSpriteSheet_9
   serializedVersion: 4
   mipmaps:
@@ -58,7 +58,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -88,7 +88,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_0
+      name: Movement1
       rect:
         serializedVersion: 2
         x: 0
@@ -102,7 +102,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_1
+      name: Movement2
       rect:
         serializedVersion: 2
         x: 32
@@ -116,7 +116,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_2
+      name: Movement3
       rect:
         serializedVersion: 2
         x: 64
@@ -130,7 +130,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_3
+      name: Movement4
       rect:
         serializedVersion: 2
         x: 96
@@ -144,7 +144,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_4
+      name: Death1
       rect:
         serializedVersion: 2
         x: 0
@@ -158,7 +158,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_5
+      name: Death2
       rect:
         serializedVersion: 2
         x: 32
@@ -172,7 +172,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_6
+      name: Death3
       rect:
         serializedVersion: 2
         x: 64
@@ -186,7 +186,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_7
+      name: Death4
       rect:
         serializedVersion: 2
         x: 96
@@ -200,7 +200,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_8
+      name: Attack1
       rect:
         serializedVersion: 2
         x: 0
@@ -214,7 +214,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_10
+      name: Attack2
       rect:
         serializedVersion: 2
         x: 64
@@ -228,7 +228,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_12
+      name: Attack3
       rect:
         serializedVersion: 2
         x: 0
@@ -242,7 +242,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: CosaQueTeRajaSpriteSheet_14
+      name: Attack4
       rect:
         serializedVersion: 2
         x: 64

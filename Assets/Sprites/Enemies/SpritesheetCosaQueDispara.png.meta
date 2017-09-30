@@ -1,21 +1,21 @@
 fileFormatVersion: 2
 guid: 45abc833a20b359488c2a82ae86ae220
-timeCreated: 1506800885
+timeCreated: 1506812662
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SpritesheetCosaQueDispara_0
-    21300002: SpritesheetCosaQueDispara_1
-    21300004: SpritesheetCosaQueDispara_2
-    21300006: SpritesheetCosaQueDispara_3
-    21300008: SpritesheetCosaQueDispara_4
-    21300010: SpritesheetCosaQueDispara_5
-    21300012: SpritesheetCosaQueDispara_6
-    21300014: SpritesheetCosaQueDispara_7
-    21300016: SpritesheetCosaQueDispara_8
-    21300018: SpritesheetCosaQueDispara_9
-    21300020: SpritesheetCosaQueDispara_10
-    21300022: SpritesheetCosaQueDispara_11
+    21300000: Attack1
+    21300002: Attack2
+    21300004: Attack3
+    21300006: Attack4
+    21300008: Movement1
+    21300010: Movement2
+    21300012: Movement3
+    21300014: Movement4
+    21300016: Death1
+    21300018: Death2
+    21300020: Death3
+    21300022: Death4
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -57,7 +57,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -87,7 +87,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_0
+      name: Attack1
       rect:
         serializedVersion: 2
         x: 0
@@ -95,13 +95,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_1
+      name: Attack2
       rect:
         serializedVersion: 2
         x: 32
@@ -109,13 +109,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_2
+      name: Attack3
       rect:
         serializedVersion: 2
         x: 64
@@ -123,13 +123,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_3
+      name: Attack4
       rect:
         serializedVersion: 2
         x: 96
@@ -137,13 +137,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_4
+      name: Movement1
       rect:
         serializedVersion: 2
         x: 0
@@ -151,13 +151,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_5
+      name: Movement2
       rect:
         serializedVersion: 2
         x: 32
@@ -165,13 +165,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_6
+      name: Movement3
       rect:
         serializedVersion: 2
         x: 64
@@ -179,13 +179,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_7
+      name: Movement4
       rect:
         serializedVersion: 2
         x: 96
@@ -193,13 +193,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_8
+      name: Death1
       rect:
         serializedVersion: 2
         x: 0
@@ -207,13 +207,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_9
+      name: Death2
       rect:
         serializedVersion: 2
         x: 32
@@ -221,13 +221,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_10
+      name: Death3
       rect:
         serializedVersion: 2
         x: 64
@@ -235,13 +235,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_11
+      name: Death4
       rect:
         serializedVersion: 2
         x: 96
@@ -249,7 +249,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
