@@ -1210,11 +1210,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4051739804093964, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 84.93
+      value: 68.87
       objectReference: {fileID: 0}
     - target: {fileID: 4051739804093964, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 13.49
+      value: 13.43
       objectReference: {fileID: 0}
     - target: {fileID: 4051739804093964, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1260,6 +1260,11 @@ Prefab:
       propertyPath: m_SceneCamera
       value: 
       objectReference: {fileID: 1887078930}
+    - target: {fileID: 70495683552115734, guid: 0a020f2727d1450468bf9130c2739a5c,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 2.17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
   m_IsPrefabParent: 0
@@ -1349,7 +1354,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &2050172434
 SpriteRenderer:
   m_ObjectHideFlags: 0
