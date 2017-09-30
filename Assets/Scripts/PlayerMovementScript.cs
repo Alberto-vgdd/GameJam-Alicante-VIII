@@ -29,6 +29,7 @@ public class PlayerMovementScript : MonoBehaviour
 	[Header("Ball Movement Parameters")]
 	public float m_BallSmooth;
 	public float m_MaximumBallDistance;
+	public float m_ClickTime;
 
 	[Header("Health Parameters")]
 	public float m_RecoveryTime;
@@ -41,7 +42,20 @@ public class PlayerMovementScript : MonoBehaviour
 	private float m_HorizontalInput;
 	private bool m_JumpInput;
 	private Vector3 m_MousePositionInWorld;
-	private bool m_ChangeState;
+	private bool m_ChangeStateInput;
+	
+	
+
+	// Click Inputs variables
+	private Ray m_ScreenToWorldRay;
+	private RaycastHit2D m_ScreenToWorldRaycastHitInfo;
+	private bool m_BallInUse;
+	private bool m_ClickInput;
+	private float m_ClickTimer;
+	private Vector3 m_ClickPosition;
+
+
+
 
 	// Player Grounded variables
 	private bool m_PlayerGrounded;
@@ -77,11 +91,15 @@ public class PlayerMovementScript : MonoBehaviour
 		m_HorizontalInput = Input.GetAxisRaw("Horizontal");
 		m_JumpInput = Input.GetButton("Jump");
 		m_MousePositionInWorld = m_SceneCamera.ScreenToWorldPoint(Input.mousePosition+Vector3.forward*m_SceneCamera.nearClipPlane);
-		m_ChangeState = Input.GetMouseButtonDown(1);
+		m_ChangeStateInput = Input.GetMouseButtonDown(1);
+		m_ClickInput = Input.GetMouseButtonDown(0);
 
 
 		// Change Player and Ball States
 		ChangeState();
+
+		// Player Attack
+		Click();
 	}
 
 	void FixedUpdate()
@@ -189,10 +207,24 @@ public class PlayerMovementScript : MonoBehaviour
 		{
 			if (m_PlayerBallLinked)
 			{
-				float mouseDistance = Mathf.Min( Vector3.Distance(m_MousePositionInWorld,m_PlayerTransform.position), m_MaximumBallDistance);
-				Vector3 directionToMouse = (m_MousePositionInWorld-m_PlayerTransform.position).normalized;
+				if (m_BallInUse)
+				{
+						m_TargetBallPosition = m_ClickPosition;
+						m_ClickTimer += Time.fixedDeltaTime;
 
-				m_TargetBallPosition = m_PlayerTransform.position+directionToMouse*mouseDistance;
+						if (m_ClickTimer >= m_ClickTime)
+						{
+							m_BallInUse = false;
+						}
+				}
+				else
+				{
+					float mouseDistance = Mathf.Min( Vector3.Distance(m_MousePositionInWorld,m_PlayerTransform.position), m_MaximumBallDistance);
+					Vector3 directionToMouse = (m_MousePositionInWorld-m_PlayerTransform.position).normalized;
+
+					m_TargetBallPosition = m_PlayerTransform.position+directionToMouse*mouseDistance;
+				}
+				
 			}
 			else if (m_PlayerBallTogether)
 			{
@@ -209,7 +241,7 @@ public class PlayerMovementScript : MonoBehaviour
 	
 	void ChangeState()
 	{
-		if (m_ChangeState)
+		if (m_ChangeStateInput)
 		{
 			if (m_PlayerBallTogether)
 			{
@@ -222,6 +254,30 @@ public class PlayerMovementScript : MonoBehaviour
 				m_PlayerBallLinked = false;
 			}
 			
+		}
+	}
+
+	void Click()
+	{
+		if (m_ClickInput)
+		{
+			if (m_PlayerBallLinked)
+			{
+				
+				m_ScreenToWorldRay = m_SceneCamera.ScreenPointToRay(Input.mousePosition);
+				m_ScreenToWorldRaycastHitInfo = Physics2D.Raycast(m_ScreenToWorldRay.origin,m_ScreenToWorldRay.direction,1000f,(1 << LayerMask.NameToLayer("Clickable")));
+
+				if (m_ScreenToWorldRaycastHitInfo.transform != null)
+				{
+					m_BallInUse = true;
+					m_ClickTimer = 0f;
+					m_ClickPosition = m_ScreenToWorldRaycastHitInfo.transform.GetComponent<ClickPositionScript>().GetClickPosition();
+				}
+			}
+			else if(m_PlayerBallTogether)
+			{
+
+			}
 		}
 	}
 
