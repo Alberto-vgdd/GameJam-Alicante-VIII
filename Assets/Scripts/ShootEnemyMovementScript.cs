@@ -8,12 +8,12 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 
 	public GameObject m_BulletObject;
 	public Transform m_PlayerTransform;
-
+	public string direction;
 
 	public float m_AggroDistance;
 	public bool m_InRange;
 
-	public Vector3 m_InstantiationPosition;
+	public Transform m_InstantiationPosition;
 
 
 	float frames;
@@ -33,6 +33,13 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 
 	void CheckDistance(){
 
+		if(m_PlayerTransform.position.x > transform.position.x){
+			direction = "right";
+		}else{
+			direction = "left";
+			transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+		}
+
 		if(Vector3.Distance(transform.position, m_PlayerTransform.position) < m_AggroDistance)
 			m_InRange = true;
 		else
@@ -45,7 +52,8 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 		if(m_InRange){
 			frames++;
 			if(frames * Time.deltaTime > m_TimeBetweenShots){
-					Instantiate(m_BulletObject, transform.position + m_InstantiationPosition, new Quaternion(0,0,0,0));
+				GameObject m_NewBullet = Instantiate(m_BulletObject, m_InstantiationPosition.position, new Quaternion(0,0,0,0));
+				m_NewBullet.GetComponent<MoveBullet>().direction = direction;
 				frames = 0;
 			}
 		}
