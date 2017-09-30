@@ -9,7 +9,6 @@ public class PlayerMovementScript : MonoBehaviour
 	public Rigidbody2D m_PlayerRigidbody2D;
 	public CapsuleCollider2D m_PlayerCapsuleCollider2D;
 	public Animator m_PlayerAnimatorController;
-	public SpriteRenderer m_PlayerSpriteRenderer;
 
 	[Header("Ball Components")]
 	public Transform m_BallTransform;
@@ -161,7 +160,14 @@ public class PlayerMovementScript : MonoBehaviour
 		if (m_HorizontalInput != 0)
 		{
 			// Check if the player is trying to walk into a wall/ramp, and avoid the movement
-			m_RaycastHit2DArray = Physics2D.CapsuleCastAll(new Vector2(m_PlayerTransform.position.x,m_PlayerTransform.position.y)+m_PlayerCapsuleCollider2D.offset,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,Vector2.right*m_HorizontalInput,m_FastMovementpeed*Time.fixedDeltaTime, (1 << LayerMask.NameToLayer("Scenario")));
+			if (m_PlayerTransform.localScale.x < 0)
+			{
+				m_RaycastHit2DArray = Physics2D.CapsuleCastAll(new Vector2(m_PlayerTransform.position.x-m_PlayerCapsuleCollider2D.size.x,m_PlayerTransform.position.y)+m_PlayerCapsuleCollider2D.offset,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,Vector2.right*m_HorizontalInput,m_FastMovementpeed*Time.fixedDeltaTime, (1 << LayerMask.NameToLayer("Scenario")));
+			} 
+			else
+			{
+				m_RaycastHit2DArray = Physics2D.CapsuleCastAll(new Vector2(m_PlayerTransform.position.x,m_PlayerTransform.position.y)+m_PlayerCapsuleCollider2D.offset,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,Vector2.right*m_HorizontalInput,m_FastMovementpeed*Time.fixedDeltaTime, (1 << LayerMask.NameToLayer("Scenario")));
+			}
 			
 			foreach(RaycastHit2D hit in m_RaycastHit2DArray)
 			{
