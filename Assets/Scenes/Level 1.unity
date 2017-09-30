@@ -680,7 +680,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 553920627}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 51.3, y: -36.1, z: -0.1}
+  m_LocalPosition: {x: 51.35, y: -35.94, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1722147070}
@@ -727,7 +727,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 19.460323, y: 14.408905}
+  m_Offset: {x: 19.460323, y: 14.558617}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -738,7 +738,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8682709, y: 19.18219}
+  m_Size: {x: 2.8682709, y: 18.882767}
   m_EdgeRadius: 0
 --- !u!61 &553920631
 BoxCollider2D:
@@ -802,7 +802,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 23.43523, y: -1.65625}
+  m_Offset: {x: 23.43523, y: -1.3925152}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -813,7 +813,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 45.929543, y: 5.270035}
+  m_Size: {x: 45.929543, y: 5.7975044}
   m_EdgeRadius: 0
 --- !u!61 &553920634
 BoxCollider2D:
@@ -852,7 +852,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -17.804195}
+  m_Offset: {x: 0, y: -17.689447}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -863,7 +863,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 92.8, y: 12.391609}
+  m_Size: {x: 92.8, y: 12.621105}
   m_EdgeRadius: 0
 --- !u!61 &553920636
 BoxCollider2D:
@@ -1499,7 +1499,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 3.7846966, y: -11.748233}
+  m_Offset: {x: 3.7846966, y: -10.949277}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1510,7 +1510,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8.569393, y: 24.496466}
+  m_Size: {x: 8.569393, y: 22.898554}
   m_EdgeRadius: 0
 --- !u!4 &1797790214 stripped
 Transform:
