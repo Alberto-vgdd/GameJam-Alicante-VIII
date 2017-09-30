@@ -14,9 +14,9 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 	public bool m_InRange;
 
 	public Transform m_InstantiationPosition;
+    public float m_MovementSpeed;
 
-
-	float frames;
+    float frames;
 	public float m_TimeBetweenShots;
 
 	// Use this for initialization
@@ -51,6 +51,18 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 	void Shoot()
 	{
 		if(m_InRange){
+
+            if (Vector3.Distance(m_Rigidbody2D.transform.position, m_PlayerTransform.position) > 18) {
+                if (m_Rigidbody2D.transform.position.x < m_PlayerTransform.position.x) {
+                    m_Rigidbody2D.velocity = Vector2.right * m_MovementSpeed;
+                    //Otherwise
+                }
+                else
+                {
+                    m_Rigidbody2D.velocity = Vector2.right * -m_MovementSpeed;
+                }
+            
+            }
 			frames++;
 			if(frames * Time.deltaTime > m_TimeBetweenShots){
 				GameObject m_NewBullet = Instantiate(m_BulletObject, m_InstantiationPosition.position, new Quaternion(0,0,0,0));
