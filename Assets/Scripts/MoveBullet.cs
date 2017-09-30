@@ -12,7 +12,7 @@ public class MoveBullet : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D(Collider2D coll){
-		if(coll.gameObject.tag == "Ball"){
+		if(coll.gameObject.tag == "Ball" || coll.gameObject.tag == "Player"){
 			Destroy(this.gameObject);
 		}
 	}
