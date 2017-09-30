@@ -37,6 +37,7 @@ public class PlayerMovementScript : MonoBehaviour
 
 	[Header("Health Parameters")]
 	public float m_RecoveryTime;
+	public float m_TimeBeforeDeath;
 
 	
 
@@ -62,7 +63,7 @@ public class PlayerMovementScript : MonoBehaviour
 
 	// Player Grounded variables
 	private Vector3 m_PlayerCenter;
-	public bool m_PlayerGrounded;
+	private bool m_PlayerGrounded;
 	private bool m_PlayerSliding;
 	RaycastHit2D[] m_RaycastHit2DArray;
 	private Vector2 m_FloorNormal;
@@ -81,7 +82,8 @@ public class PlayerMovementScript : MonoBehaviour
 	private bool m_PlayerDamaged;
 	private float m_RecoveryTimer;
 	private Vector2 m_DamageDirection;
-
+	private float m_DeathTimer;
+	private bool m_PlayerDeath;
 	void Start () 
 	{
 		m_PlayerOnly = false;
@@ -109,16 +111,18 @@ public class PlayerMovementScript : MonoBehaviour
 		// Update animations
 		m_PlayerAnimatorController.SetBool("Together",m_PlayerBallTogether);
 
-
-		if (m_HorizontalInput > 0  && m_SpriteTransform.localScale.x < 0)
+		if (!m_PlayerDeath)
 		{
-			m_SpriteTransform.localScale = new Vector3(1,1,1);
-			m_SpriteTransform.localPosition -= Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
-		}
-		if (m_HorizontalInput < 0 && m_SpriteTransform.localScale.x > 0)
-		{	
-			m_SpriteTransform.localScale = new Vector3(-1,1,1); 
-			m_SpriteTransform.localPosition += Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
+			if (m_HorizontalInput > 0  && m_SpriteTransform.localScale.x < 0)
+			{
+				m_SpriteTransform.localScale = new Vector3(1,1,1);
+				m_SpriteTransform.localPosition -= Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
+			}
+			if (m_HorizontalInput < 0 && m_SpriteTransform.localScale.x > 0)
+			{	
+				m_SpriteTransform.localScale = new Vector3(-1,1,1); 
+				m_SpriteTransform.localPosition += Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
+			}
 		}
 
 		if (m_PlayerRigidbody2D.velocity.x != 0)
@@ -129,14 +133,32 @@ public class PlayerMovementScript : MonoBehaviour
 		{
 			m_PlayerAnimatorController.SetBool("Walking",false);
 		}
+
+		m_PlayerAnimatorController.SetBool("Grounded",m_PlayerGrounded);
+
+
+		if(m_PlayerOnly)
+		{
+			m_DeathTimer += Time.deltaTime;
+		
+			if (m_DeathTimer >= m_TimeBeforeDeath)
+			{
+				m_PlayerDeath = true;
+			}
+		}
+
+		m_PlayerAnimatorController.SetBool("Death", m_PlayerDeath);
+		
 		
 		
 	}
 
 	void FixedUpdate()
 	{
+		
 		MovePlayer();
 		MoveBall();
+		
 	}
 
 
@@ -144,7 +166,6 @@ public class PlayerMovementScript : MonoBehaviour
 	{
 		m_PlayerCenter = m_PlayerTransform.position + new Vector3(m_PlayerCapsuleCollider2D.offset.x,m_PlayerCapsuleCollider2D.offset.y);
 		m_RaycastHit2DArray = Physics2D.CapsuleCastAll(m_PlayerCenter,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,-Vector2.up,m_RayToGroundDistance, (1 << LayerMask.NameToLayer("Scenario")));
-
 		
 		// Check if the player is grounded (Assume the player is sliding by default).
 		m_PlayerGrounded = m_PlayerSliding = (m_RaycastHit2DArray.Length > 0) ? true: false;
@@ -177,14 +198,18 @@ public class PlayerMovementScript : MonoBehaviour
 		
 		
 		// Move the player
-		if (m_PlayerBallTogether)
+		if (!m_PlayerDeath)
 		{
-			m_PlayerRigidbody2D.velocity = Vector2.right*m_MovementSpeed*m_HorizontalInput + Vector2.up*m_PlayerRigidbody2D.velocity.y;
+			if (m_PlayerBallTogether)
+			{
+				m_PlayerRigidbody2D.velocity = Vector2.right*m_MovementSpeed*m_HorizontalInput + Vector2.up*m_PlayerRigidbody2D.velocity.y;
+			}
+			else
+			{
+				m_PlayerRigidbody2D.velocity = Vector2.right*m_FastMovementpeed*m_HorizontalInput + Vector2.up*m_PlayerRigidbody2D.velocity.y;
+			}
 		}
-		else
-		{
-			m_PlayerRigidbody2D.velocity = Vector2.right*m_FastMovementpeed*m_HorizontalInput + Vector2.up*m_PlayerRigidbody2D.velocity.y;
-		}
+		
 		
 		
 
@@ -195,7 +220,7 @@ public class PlayerMovementScript : MonoBehaviour
 
 
 		//Manage the jump
-		if (m_PlayerGrounded && m_JumpInput)
+		if (m_PlayerGrounded && m_JumpInput && !m_PlayerDeath)
 		{
 			if (!m_PlayerSliding)
 			{
@@ -241,13 +266,13 @@ public class PlayerMovementScript : MonoBehaviour
 			{
 				if (m_BallInUse)
 				{
-						m_TargetBallPosition = m_ClickPosition;
-						m_ClickTimer += Time.fixedDeltaTime;
+					m_TargetBallPosition = m_ClickPosition;
+					m_ClickTimer += Time.fixedDeltaTime;
 
-						if (m_ClickTimer >= m_ClickTime)
-						{
-							m_BallInUse = false;
-						}
+					if (m_ClickTimer >= m_ClickTime)
+					{
+						m_BallInUse = false;
+					}
 				}
 				else
 				{
@@ -339,6 +364,7 @@ public class PlayerMovementScript : MonoBehaviour
 		{
 			ReleaseBall();
 		}
+		
 
 		
 	}
@@ -353,6 +379,8 @@ public class PlayerMovementScript : MonoBehaviour
 		m_PlayerBallTogether = false;
 		m_PlayerBallLinked = false;
 		m_PlayerOnly = true;
+
+		m_DeathTimer = 0;
 	}
 
 	void RetrieveBall()
