@@ -16,8 +16,8 @@ public class ParallaxBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		parallaxObjects [0].transform.position = new Vector3 (player.transform.position.x * 0.2f, 0f, 30f);
-		parallaxObjects [1].transform.position = new Vector3 (player.transform.position.x * 0.5f, 0f, 30f);
+		parallaxObjects [0].transform.position = new Vector3 (- player.transform.position.x * 0.1f, 0f, 30f);
+		parallaxObjects [1].transform.position = new Vector3 (- player.transform.position.x * 0.25f, 0f, 30f);
 		
 	}
 }
