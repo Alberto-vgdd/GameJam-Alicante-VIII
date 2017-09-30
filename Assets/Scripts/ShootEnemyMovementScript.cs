@@ -35,6 +35,7 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 
 		if(m_PlayerTransform.position.x > transform.position.x){
 			direction = "right";
+			transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
 		}else{
 			direction = "left";
 			transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
