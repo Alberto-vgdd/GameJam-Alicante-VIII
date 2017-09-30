@@ -463,11 +463,13 @@ MonoBehaviour:
   m_BallRigidbody2D: {fileID: 1734353771}
   m_BallCollider2D: {fileID: 1734353774}
   m_SceneCamera: {fileID: 1887078930}
-  m_MovementSpeed: 10
-  m_FastMovementpeed: 20
+  m_MovementSpeed: 7.5
+  m_FastMovementpeed: 15
   m_JumpSpeed: 22.5
   m_RayToGroundDistance: 0.1
   m_MaxSlopeAngle: 35
+  m_GravityScaleJetpack: 2
+  m_GravityScaleJump: 4
   m_BallSmooth: 0.05
   m_MaximumBallDistance: 10
   m_RecoveryTime: 0.5

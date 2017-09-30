@@ -23,6 +23,8 @@ public class PlayerMovementScript : MonoBehaviour
 	public float m_JumpSpeed;
 	public float m_RayToGroundDistance;
 	public float m_MaxSlopeAngle;
+	public float m_GravityScaleJetpack;
+	public float m_GravityScaleJump;
 
 	[Header("Ball Movement Parameters")]
 	public float m_BallSmooth;
@@ -112,7 +114,7 @@ public class PlayerMovementScript : MonoBehaviour
 		if (m_HorizontalInput != 0)
 		{
 			// Check if the player is trying to walk into a wall/ramp, and avoid the movement
-			m_RaycastHit2DArray = Physics2D.CapsuleCastAll(new Vector2(m_PlayerTransform.position.x,m_PlayerTransform.position.y)+m_PlayerCapsuleCollider2D.offset,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,Vector2.right*m_HorizontalInput,m_MovementSpeed*Time.fixedDeltaTime, (1 << LayerMask.NameToLayer("Scenario")));
+			m_RaycastHit2DArray = Physics2D.CapsuleCastAll(new Vector2(m_PlayerTransform.position.x,m_PlayerTransform.position.y)+m_PlayerCapsuleCollider2D.offset,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,Vector2.right*m_HorizontalInput,m_FastMovementpeed*Time.fixedDeltaTime, (1 << LayerMask.NameToLayer("Scenario")));
 			
 			foreach(RaycastHit2D hit in m_RaycastHit2DArray)
 			{
@@ -125,13 +127,21 @@ public class PlayerMovementScript : MonoBehaviour
 		
 		
 		// Move the player
-		m_PlayerRigidbody2D.velocity = Vector2.right*m_MovementSpeed*m_HorizontalInput + Vector2.up*m_PlayerRigidbody2D.velocity.y;
+		if (m_PlayerBallTogether)
+		{
+			m_PlayerRigidbody2D.velocity = Vector2.right*m_MovementSpeed*m_HorizontalInput + Vector2.up*m_PlayerRigidbody2D.velocity.y;
+		}
+		else
+		{
+			m_PlayerRigidbody2D.velocity = Vector2.right*m_FastMovementpeed*m_HorizontalInput + Vector2.up*m_PlayerRigidbody2D.velocity.y;
+		}
+		
 		
 
 		// Adapt player movement to the ground
 		if (m_PlayerGrounded && m_FloorNormal != Vector2.up) {	m_PlayerRigidbody2D.velocity = Vector3.ProjectOnPlane(m_PlayerRigidbody2D.velocity,m_FloorNormal); }
 		// Apply Sliding to the player
-		if (m_PlayerSliding){ 	m_PlayerRigidbody2D.velocity = new Vector2(m_PlayerRigidbody2D.velocity.x, Mathf.Min(m_PlayerRigidbody2D.velocity.y,-2f*m_MovementSpeed)); 	}
+		if (m_PlayerSliding){ 	m_PlayerRigidbody2D.velocity = new Vector2(m_PlayerRigidbody2D.velocity.x, Mathf.Min(m_PlayerRigidbody2D.velocity.y,-m_FastMovementpeed)); 	}
 
 
 		//Manage the jump
@@ -162,7 +172,15 @@ public class PlayerMovementScript : MonoBehaviour
 		
 
 		// Finally, add the gravity force
-		m_PlayerRigidbody2D.AddForce(Physics2D.gravity*4f);
+		if (m_PlayerBallTogether)
+		{
+			m_PlayerRigidbody2D.AddForce(Physics2D.gravity*m_GravityScaleJetpack);
+		}
+		else
+		{
+			m_PlayerRigidbody2D.AddForce(Physics2D.gravity*m_GravityScaleJump);
+		}
+		
 	}
 
 	void MoveBall()
