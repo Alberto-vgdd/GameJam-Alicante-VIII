@@ -37,6 +37,11 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 		//Move it to the left by default
 		m_PatrollingLeft = true;
 	}
+
+	void OnCollisionEnter(Collision collision){
+		if(collision.gameObject.name == "Player")
+			Debug.Log("A");
+	}
 	
 	// Update is called once per frame
 	void Update () 
@@ -62,6 +67,7 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 				m_ChasingPlayer = false;
 			}
 		}
+
 	}
 
 
@@ -79,7 +85,6 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 		{
 			//Move towards its direction
 			m_Rigidbody2D.velocity = Vector2.right * m_MovementSpeed * Mathf.Sign((m_PlayerTransform.position - transform.position).x);
-
 		}
 		else if(m_ReturningToInitialPosition)
 		{
