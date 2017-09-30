@@ -8,6 +8,9 @@ public class PlayerMovementScript : MonoBehaviour
 	public Transform m_PlayerTransform;
 	public Rigidbody2D m_PlayerRigidbody2D;
 	public CapsuleCollider2D m_PlayerCapsuleCollider2D;
+
+	[Header("Animation Components")]
+	public Transform m_SpriteTransform;
 	public Animator m_PlayerAnimatorController;
 
 	[Header("Ball Components")]
@@ -57,9 +60,9 @@ public class PlayerMovementScript : MonoBehaviour
 
 
 
-
 	// Player Grounded variables
-	private bool m_PlayerGrounded;
+	private Vector3 m_PlayerCenter;
+	public bool m_PlayerGrounded;
 	private bool m_PlayerSliding;
 	RaycastHit2D[] m_RaycastHit2DArray;
 	private Vector2 m_FloorNormal;
@@ -107,15 +110,15 @@ public class PlayerMovementScript : MonoBehaviour
 		m_PlayerAnimatorController.SetBool("Together",m_PlayerBallTogether);
 
 
-		if (m_HorizontalInput > 0  && m_PlayerTransform.localScale.x < 0)
+		if (m_HorizontalInput > 0  && m_SpriteTransform.localScale.x < 0)
 		{
-			m_PlayerTransform.localScale = new Vector3(1,1,1);
-			m_PlayerTransform.localPosition -= Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
+			m_SpriteTransform.localScale = new Vector3(1,1,1);
+			m_SpriteTransform.localPosition -= Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
 		}
-		if (m_HorizontalInput < 0 && m_PlayerTransform.localScale.x > 0)
+		if (m_HorizontalInput < 0 && m_SpriteTransform.localScale.x > 0)
 		{	
-			m_PlayerTransform.localScale = new Vector3(-1,1,1); 
-			m_PlayerTransform.localPosition += Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
+			m_SpriteTransform.localScale = new Vector3(-1,1,1); 
+			m_SpriteTransform.localPosition += Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
 		}
 
 		if (m_PlayerRigidbody2D.velocity.x != 0)
@@ -139,8 +142,9 @@ public class PlayerMovementScript : MonoBehaviour
 
 	void MovePlayer()
 	{
-		// Cast a capsule below the player
-		m_RaycastHit2DArray = Physics2D.CapsuleCastAll(new Vector2(m_PlayerTransform.position.x,m_PlayerTransform.position.y)+m_PlayerCapsuleCollider2D.offset,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,-Vector2.up,m_RayToGroundDistance, (1 << LayerMask.NameToLayer("Scenario")));
+		m_PlayerCenter = m_PlayerTransform.position + new Vector3(m_PlayerCapsuleCollider2D.offset.x,m_PlayerCapsuleCollider2D.offset.y);
+		m_RaycastHit2DArray = Physics2D.CapsuleCastAll(m_PlayerCenter,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,-Vector2.up,m_RayToGroundDistance, (1 << LayerMask.NameToLayer("Scenario")));
+
 		
 		// Check if the player is grounded (Assume the player is sliding by default).
 		m_PlayerGrounded = m_PlayerSliding = (m_RaycastHit2DArray.Length > 0) ? true: false;
@@ -160,15 +164,8 @@ public class PlayerMovementScript : MonoBehaviour
 		if (m_HorizontalInput != 0)
 		{
 			// Check if the player is trying to walk into a wall/ramp, and avoid the movement
-			if (m_PlayerTransform.localScale.x < 0)
-			{
-				m_RaycastHit2DArray = Physics2D.CapsuleCastAll(new Vector2(m_PlayerTransform.position.x-m_PlayerCapsuleCollider2D.size.x,m_PlayerTransform.position.y)+m_PlayerCapsuleCollider2D.offset,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,Vector2.right*m_HorizontalInput,m_FastMovementpeed*Time.fixedDeltaTime, (1 << LayerMask.NameToLayer("Scenario")));
-			} 
-			else
-			{
-				m_RaycastHit2DArray = Physics2D.CapsuleCastAll(new Vector2(m_PlayerTransform.position.x,m_PlayerTransform.position.y)+m_PlayerCapsuleCollider2D.offset,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,Vector2.right*m_HorizontalInput,m_FastMovementpeed*Time.fixedDeltaTime, (1 << LayerMask.NameToLayer("Scenario")));
-			}
-			
+			m_RaycastHit2DArray = Physics2D.CapsuleCastAll(m_PlayerCenter,m_PlayerCapsuleCollider2D.size,m_PlayerCapsuleCollider2D.direction,m_PlayerTransform.eulerAngles.z,Vector2.right*m_HorizontalInput,m_FastMovementpeed*Time.fixedDeltaTime, (1 << LayerMask.NameToLayer("Scenario")));
+
 			foreach(RaycastHit2D hit in m_RaycastHit2DArray)
 			{
 				if (Vector2.Angle(Vector2.up, hit.normal)>m_MaxSlopeAngle)
@@ -254,16 +251,16 @@ public class PlayerMovementScript : MonoBehaviour
 				}
 				else
 				{
-					float mouseDistance = Mathf.Min( Vector3.Distance(m_MousePositionInWorld,m_PlayerTransform.position), m_MaximumBallDistance);
-					Vector3 directionToMouse = (m_MousePositionInWorld-m_PlayerTransform.position).normalized;
+					float mouseDistance = Mathf.Min( Vector3.Distance(m_MousePositionInWorld,m_PlayerCenter), m_MaximumBallDistance);
+					Vector3 directionToMouse = (m_MousePositionInWorld-m_PlayerCenter).normalized;
 
-					m_TargetBallPosition = m_PlayerTransform.position+directionToMouse*mouseDistance;
+					m_TargetBallPosition = m_PlayerCenter+directionToMouse*mouseDistance ;
 				}
 				
 			}
 			else if (m_PlayerBallTogether)
 			{
-				m_TargetBallPosition = m_PlayerTransform.position;
+				m_TargetBallPosition = m_PlayerCenter;
 
 			}
 
@@ -271,7 +268,7 @@ public class PlayerMovementScript : MonoBehaviour
 			
 
 			// LA GITANADA MOTHER
-			if (m_PlayerBallTogether && Vector3.Distance(m_PlayerTransform.position,m_BallTransform.position) < 4)
+			if (m_PlayerBallTogether && Vector3.Distance(m_PlayerCenter,m_BallTransform.position) < 4)
 			{
 				m_BallTransform.gameObject.GetComponent<SpriteRenderer>().enabled = false;
 			}
@@ -376,7 +373,7 @@ public class PlayerMovementScript : MonoBehaviour
 		if (collision.gameObject.CompareTag("Enemy") && !m_PlayerDamaged)
 		{
 			ApplyDamage();
-			m_DamageDirection = (m_PlayerTransform.position.x >= collision.transform.position.x)? Vector2.right: -Vector2.right;
+			m_DamageDirection = (m_PlayerCenter.x>= collision.transform.position.x)? Vector2.right: -Vector2.right;
 			
 		}
 		if (collision.gameObject.CompareTag("Ball"))
