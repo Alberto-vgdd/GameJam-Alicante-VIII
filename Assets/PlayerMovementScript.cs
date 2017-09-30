@@ -12,13 +12,14 @@ public class PlayerMovementScript : MonoBehaviour
 	[Header("Ball Components")]
 	public Transform m_BallTransform;
 	public Rigidbody2D m_BallRigidbody2D;
+	public Collider2D m_BallCollider2D;
 	
 	[Header("Scene Camera")]
 	public Camera m_SceneCamera;
 
 	[Header("Player Movement Parameters")]
 	public float m_MovementSpeed;
-	public float m_FastMovementpeeed;
+	public float m_FastMovementpeed;
 	public float m_JumpSpeed;
 	public float m_RayToGroundDistance;
 	public float m_MaxSlopeAngle;
@@ -26,6 +27,10 @@ public class PlayerMovementScript : MonoBehaviour
 	[Header("Ball Movement Parameters")]
 	public float m_BallSmooth;
 	public float m_MaximumBallDistance;
+
+	[Header("Health Parameters")]
+	public float m_RecoveryTime;
+
 	
 
 
@@ -51,6 +56,11 @@ public class PlayerMovementScript : MonoBehaviour
 	private bool m_PlayerBallTogether;
 	private bool m_PlayerBallLinked;
 	private bool m_PlayerOnly;
+
+	// Player Heatlh variables
+	private bool m_PlayerDamaged;
+	private float m_RecoveryTimer;
+	private Vector2 m_DamageDirection;
 
 	void Start () 
 	{
@@ -133,7 +143,23 @@ public class PlayerMovementScript : MonoBehaviour
 			}
 		}
 		
+		// Apply movement in the opposite direction of the damage origin. Deny any horizontal input
+		if (m_PlayerDamaged)
+		{
+			if (Mathf.Sign(m_HorizontalInput) != Mathf.Sign(m_DamageDirection.x))
+			{
+				m_PlayerRigidbody2D.velocity = m_MovementSpeed*m_DamageDirection + Vector2.up*m_PlayerRigidbody2D.velocity.y;
+			}
+				
 
+			m_RecoveryTimer += Time.fixedDeltaTime;
+			if (m_RecoveryTimer >= m_RecoveryTime)
+			{
+				m_PlayerDamaged = false;
+			}
+	
+		}
+		
 
 		// Finally, add the gravity force
 		m_PlayerRigidbody2D.AddForce(Physics2D.gravity*4f);
@@ -141,19 +167,25 @@ public class PlayerMovementScript : MonoBehaviour
 
 	void MoveBall()
 	{
-		if (m_PlayerBallLinked && !m_PlayerBallTogether && !m_PlayerOnly)
+		if (!m_PlayerOnly)
 		{
-			float mouseDistance = Mathf.Min( Vector3.Distance(m_MousePositionInWorld,m_PlayerTransform.position), m_MaximumBallDistance);
-			Vector3 directionToMouse = (m_MousePositionInWorld-m_PlayerTransform.position).normalized;
+			if (m_PlayerBallLinked)
+			{
+				float mouseDistance = Mathf.Min( Vector3.Distance(m_MousePositionInWorld,m_PlayerTransform.position), m_MaximumBallDistance);
+				Vector3 directionToMouse = (m_MousePositionInWorld-m_PlayerTransform.position).normalized;
 
-			m_TargetBallPosition = m_PlayerTransform.position+directionToMouse*mouseDistance;
-		}
-		else
-		{
-			m_TargetBallPosition = m_PlayerTransform.position;
+				m_TargetBallPosition = m_PlayerTransform.position+directionToMouse*mouseDistance;
+			}
+			else if (m_PlayerBallTogether)
+			{
+				m_TargetBallPosition = m_PlayerTransform.position;
+			}
+
+			m_BallRigidbody2D.MovePosition(Vector2.SmoothDamp(m_BallRigidbody2D.position,m_TargetBallPosition,ref m_CurrentBallVelocity,m_BallSmooth,100f,Time.fixedDeltaTime));
+			
 		}
 		
-		m_BallRigidbody2D.MovePosition(Vector2.SmoothDamp(m_BallRigidbody2D.position,m_TargetBallPosition,ref m_CurrentBallVelocity,m_BallSmooth,100f,Time.fixedDeltaTime));
+		
 		
 	}
 	
@@ -161,9 +193,78 @@ public class PlayerMovementScript : MonoBehaviour
 	{
 		if (m_ChangeState)
 		{
-			m_PlayerBallTogether = !m_PlayerBallTogether;
-			m_PlayerBallLinked = !m_PlayerBallLinked;
+			if (m_PlayerBallTogether)
+			{
+				m_PlayerBallTogether = false;
+				m_PlayerBallLinked = true;
+			}
+			else if (m_PlayerBallLinked)
+			{
+				m_PlayerBallTogether = true;
+				m_PlayerBallLinked = false;
+			}
+			
 		}
+	}
+
+	void ApplyDamage()
+	{
+		m_RecoveryTimer = 0;
+		m_PlayerDamaged = true;
+
+
+		if (m_PlayerBallTogether)
+		{
+			m_PlayerBallTogether = false;
+			m_PlayerBallLinked = true;
+		}
+		else if (m_PlayerBallLinked)
+		{
+			ReleaseBall();
+		}
+
+		
+	}
+
+
+
+
+	void ReleaseBall()
+	{
+		m_BallCollider2D.isTrigger = false;
+
+		m_PlayerBallTogether = false;
+		m_PlayerBallLinked = false;
+		m_PlayerOnly = true;
+	}
+
+	void RetrieveBall()
+	{
+		m_BallCollider2D.isTrigger = true;
+
+		m_PlayerBallTogether = true;
+		m_PlayerBallLinked = false;
+		m_PlayerOnly = false;
+	}
+
+
+
+
+
+	void OnCollisionEnter2D (Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("Enemy") && !m_PlayerDamaged)
+		{
+			ApplyDamage();
+			m_DamageDirection = (m_PlayerTransform.position.x >= collision.transform.position.x)? Vector2.right: -Vector2.right;
+			
+		}
+		if (collision.gameObject.CompareTag("Ball"))
+		{
+			RetrieveBall();
+		}
+		
+
 	}
 }
 
