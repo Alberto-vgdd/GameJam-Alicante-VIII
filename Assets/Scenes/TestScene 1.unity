@@ -241,11 +241,6 @@ Prefab:
       propertyPath: m_PlayerTransform
       value: 
       objectReference: {fileID: 1960297690}
-    - target: {fileID: 114413023565357976, guid: 34f66e7bedcf1d14a8908dc1d94d5dbb,
-        type: 2}
-      propertyPath: m_InstantiationPosition
-      value: 
-      objectReference: {fileID: 1740067981}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 34f66e7bedcf1d14a8908dc1d94d5dbb, type: 2}
   m_IsPrefabParent: 0
@@ -1069,34 +1064,6 @@ CircleCollider2D:
   m_PrefabParentObject: {fileID: 58029130774940996, guid: b1934e2f95cec9444b63aff5bf076185,
     type: 2}
   m_PrefabInternal: {fileID: 366465202}
---- !u!1 &1740067980
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1740067981}
-  m_Layer: 0
-  m_Name: Bullet instantiation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1740067981
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1740067980}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.88, y: -0.13, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2050172435}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1824060743
 GameObject:
   m_ObjectHideFlags: 0
@@ -1442,11 +1409,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4051739804093964, guid: 0a020f2727d1450468bf9130c2739a5c,
     type: 2}
   m_PrefabInternal: {fileID: 1960297689}
---- !u!4 &2050172435 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4669146727657866, guid: 34f66e7bedcf1d14a8908dc1d94d5dbb,
-    type: 2}
-  m_PrefabInternal: {fileID: 207436967}
 --- !u!1 &2060870984
 GameObject:
   m_ObjectHideFlags: 0

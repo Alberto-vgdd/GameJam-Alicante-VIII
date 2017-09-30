@@ -1,21 +1,22 @@
 fileFormatVersion: 2
-guid: 45abc833a20b359488c2a82ae86ae220
-timeCreated: 1506800885
+guid: 3682d0bb96766a5428d962356459dee6
+timeCreated: 1506808946
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: SpritesheetCosaQueDispara_0
-    21300002: SpritesheetCosaQueDispara_1
-    21300004: SpritesheetCosaQueDispara_2
-    21300006: SpritesheetCosaQueDispara_3
-    21300008: SpritesheetCosaQueDispara_4
-    21300010: SpritesheetCosaQueDispara_5
-    21300012: SpritesheetCosaQueDispara_6
-    21300014: SpritesheetCosaQueDispara_7
-    21300016: SpritesheetCosaQueDispara_8
-    21300018: SpritesheetCosaQueDispara_9
-    21300020: SpritesheetCosaQueDispara_10
-    21300022: SpritesheetCosaQueDispara_11
+    21300000: CosaQueTeRajaSpriteSheet_0
+    21300002: CosaQueTeRajaSpriteSheet_1
+    21300004: CosaQueTeRajaSpriteSheet_2
+    21300006: CosaQueTeRajaSpriteSheet_3
+    21300008: CosaQueTeRajaSpriteSheet_4
+    21300010: CosaQueTeRajaSpriteSheet_5
+    21300012: CosaQueTeRajaSpriteSheet_6
+    21300014: CosaQueTeRajaSpriteSheet_7
+    21300016: CosaQueTeRajaSpriteSheet_8
+    21300018: CosaQueTeRajaSpriteSheet_10
+    21300020: CosaQueTeRajaSpriteSheet_12
+    21300022: CosaQueTeRajaSpriteSheet_14
+    21300024: CosaQueTeRajaSpriteSheet_9
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -87,7 +88,63 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_0
+      name: CosaQueTeRajaSpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: CosaQueTeRajaSpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: CosaQueTeRajaSpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: CosaQueTeRajaSpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: CosaQueTeRajaSpriteSheet_4
       rect:
         serializedVersion: 2
         x: 0
@@ -95,13 +152,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_1
+      name: CosaQueTeRajaSpriteSheet_5
       rect:
         serializedVersion: 2
         x: 32
@@ -109,13 +166,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_2
+      name: CosaQueTeRajaSpriteSheet_6
       rect:
         serializedVersion: 2
         x: 64
@@ -123,13 +180,13 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_3
+      name: CosaQueTeRajaSpriteSheet_7
       rect:
         serializedVersion: 2
         x: 96
@@ -137,119 +194,63 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_4
+      name: CosaQueTeRajaSpriteSheet_8
       rect:
         serializedVersion: 2
         x: 0
         y: 32
-        width: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_5
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_6
+      name: CosaQueTeRajaSpriteSheet_10
       rect:
         serializedVersion: 2
         x: 64
         y: 32
-        width: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_7
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_8
+      name: CosaQueTeRajaSpriteSheet_12
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_9
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_10
+      name: CosaQueTeRajaSpriteSheet_14
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
+        width: 64
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: SpritesheetCosaQueDispara_11
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

@@ -21,7 +21,7 @@ public class MoveBullet : MonoBehaviour {
 
 	
 	void OnTriggerEnter2D(Collider2D coll){
-		if(coll.gameObject.tag == "Ball" || coll.gameObject.tag == "Player"){
+		if(coll.gameObject.tag == "Ball" || coll.gameObject.tag == "Player" || coll.gameObject.layer == LayerMask.NameToLayer("Scenario")){
 			Destroy(this.gameObject);
 		}
 	}
