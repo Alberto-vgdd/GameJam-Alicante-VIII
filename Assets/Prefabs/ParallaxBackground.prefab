@@ -35,6 +35,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4255512303374030}
+  - component: {fileID: 114833026237439694}
   m_Layer: 0
   m_Name: ParallaxBackground
   m_TagString: Untagged
@@ -99,6 +100,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114833026237439694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1406520604354406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd3d95eed0e9dcd4eac1a78b6ac97b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parallaxObjects:
+  - {fileID: 1631580335943600}
+  - {fileID: 1174708552786888}
 --- !u!212 &212498428240736396
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -173,12 +188,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0a451fa1fdbec5f45b46cc88e9b59cb0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 081fcdf953160544cb238e4ca667420a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 8.96, y: 4.48}
+  m_Size: {x: 172.8, y: 128}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
