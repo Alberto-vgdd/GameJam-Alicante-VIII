@@ -151,6 +151,7 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
             alive = false;
             selfAnimator.SetTrigger("Died");
             GetComponent<Rigidbody2D>().isKinematic = true;
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<BoxCollider2D>().enabled = false;
         }
     }
