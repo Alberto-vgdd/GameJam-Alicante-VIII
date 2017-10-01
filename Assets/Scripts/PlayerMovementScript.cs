@@ -222,8 +222,9 @@ public class PlayerMovementScript : MonoBehaviour
 
 		if (!m_OldPlayerGrounded && m_PlayerGrounded)
 		{
-			
-		}
+            dustParticles.transform.position = new Vector2(transform.position.x + 1.02f, transform.position.y - 0.2f);
+            dustParticles.Play();
+        }
 
 
 		// Check if the player is sliding.
