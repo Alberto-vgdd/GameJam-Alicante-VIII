@@ -97,6 +97,7 @@ public class ShootEnemyMovementScript : MonoBehaviour {
             alive = false;
             anim.SetTrigger("Die");
             GetComponent<Rigidbody2D>().isKinematic = true;
+            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             GetComponent<BoxCollider2D>().enabled = false;
         }
     }
