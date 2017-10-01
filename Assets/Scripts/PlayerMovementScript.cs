@@ -57,7 +57,7 @@ public class PlayerMovementScript : MonoBehaviour
 	[Header("Player Attack")]
 	public float m_AttackDuration;
 	private float m_AttackTimer;
-	public  bool m_PlayerAttacking;
+	private  bool m_PlayerAttacking;
 
 
 
@@ -138,7 +138,7 @@ public class PlayerMovementScript : MonoBehaviour
 		// Update animations
 		m_PlayerAnimatorController.SetBool("Together",m_PlayerBallTogether);
 
-		if (!m_PlayerDeath)
+		if (!m_PlayerDeath && !m_PlayerAttacking)
 		{
 			if (m_HorizontalInput > 0  && m_SpriteTransform.localScale.x < 0)
 			{
@@ -152,7 +152,8 @@ public class PlayerMovementScript : MonoBehaviour
 			}
 		}
 
-
+		if (!m_PlayerDeath && !m_PlayerAttacking)
+		{
 			if ( m_PlayerRigidbody2D.velocity.x == 0 && m_HorizontalInput != 0 )
 			{
 				m_PlayerWalking = true;
@@ -175,6 +176,7 @@ public class PlayerMovementScript : MonoBehaviour
 				{
 					m_PlayerAudioSource.Stop();
 				}
+			}
 		}
 		
 
