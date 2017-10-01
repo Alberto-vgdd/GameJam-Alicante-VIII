@@ -9,7 +9,7 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 	[Header("Aggro")]
 	public float m_AggroDistance;
 	public float m_MovementSpeed;
-	public Transform m_PlayerTransform;
+	Transform m_PlayerTransform;
 	public bool m_ChasingPlayer;
 
 	[Header("Patrolling behavior")]
@@ -39,7 +39,7 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 		m_PatrollingLeft = true;
 
 		selfAnimator = this.GetComponent<Animator> ();
-
+        m_PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	

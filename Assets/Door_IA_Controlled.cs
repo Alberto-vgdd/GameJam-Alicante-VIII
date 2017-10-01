@@ -52,7 +52,7 @@ public class Door_IA_Controlled : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "enemy")
+        if(collision.gameObject.tag == "Enemy")
         {
             m_DoorOpening = true;
         }
@@ -60,7 +60,7 @@ public class Door_IA_Controlled : MonoBehaviour {
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             m_DoorClosing = true;
         }
