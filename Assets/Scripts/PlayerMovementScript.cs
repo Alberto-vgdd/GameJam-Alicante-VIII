@@ -43,6 +43,19 @@ public class PlayerMovementScript : MonoBehaviour
 	[Header("Game Over Canvas")]
 	public GameObject m_GameOverCanvas;
 
+	[Header("Player Audio")]
+	public AudioSource m_PlayerAudioSource;
+	public AudioSource m_BallAudioSource;
+	public AudioClip m_PlayerJumpSound;
+	public AudioClip m_PlayerRushAndDeathSound;
+	public AudioClip m_PlayerPunchSound;
+	public AudioClip m_PlayerHitSound;
+	public AudioClip m_BallLevitateSound;
+	public AudioClip m_PlayerWalkSound;
+	public AudioClip m_PlayerBallReleaseSound;
+	
+
+
 
 
 	
@@ -54,6 +67,7 @@ public class PlayerMovementScript : MonoBehaviour
 	private bool m_JumpInput;
 	private Vector3 m_MousePositionInWorld;
 	private bool m_ChangeStateInput;
+	private bool m_PlayerWalking;
 	
 	
 
@@ -90,11 +104,12 @@ public class PlayerMovementScript : MonoBehaviour
 	private Vector2 m_DamageDirection;
 	private float m_DeathTimer;
 	private bool m_PlayerDeath;
+
 	void Start () 
 	{
 		m_PlayerOnly = false;
-		m_PlayerBallLinked = true;
-		m_PlayerBallTogether = false;
+		m_PlayerBallLinked = false;
+		m_PlayerBallTogether = true;
 	}
 	
 	void Update () 
@@ -131,13 +146,26 @@ public class PlayerMovementScript : MonoBehaviour
 			}
 		}
 
-		if (m_PlayerRigidbody2D.velocity.x != 0)
+		if (m_PlayerRigidbody2D.velocity.x != 0 && !m_PlayerWalking)
 		{
-			m_PlayerAnimatorController.SetBool("Walking",true);
+			m_PlayerWalking = true;
+			m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
+
+			m_PlayerAudioSource.clip = m_PlayerWalkSound;
+			m_PlayerAudioSource.loop = true;
+			m_PlayerAudioSource.Play();
 		}
-		else
+		else if (m_PlayerRigidbody2D.velocity.x == 0 && m_PlayerWalking)
 		{
-			m_PlayerAnimatorController.SetBool("Walking",false);
+			m_PlayerWalking = false;
+			m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
+
+			if (m_PlayerAudioSource.clip == m_PlayerWalkSound)
+			{
+				m_PlayerAudioSource.Stop();
+			}
+
+			
 		}
 
 		m_PlayerAnimatorController.SetBool("Grounded",m_PlayerGrounded);
@@ -156,8 +184,14 @@ public class PlayerMovementScript : MonoBehaviour
 
 		m_PlayerAnimatorController.SetBool("Death", m_PlayerDeath);
 		
+	
 		
+	}
+
+	public void ManageAudio()
+	{
 		
+
 	}
 
 	void FixedUpdate()
@@ -231,6 +265,9 @@ public class PlayerMovementScript : MonoBehaviour
 		{
 			if (!m_PlayerSliding)
 			{
+				m_PlayerAudioSource.clip = m_PlayerJumpSound;
+				m_PlayerAudioSource.loop = false;
+				m_PlayerAudioSource.Play();
 				m_PlayerRigidbody2D.velocity = Vector2.right*m_PlayerRigidbody2D.velocity.x+Vector2.up*m_JumpSpeed;
 			}
 		}
@@ -322,11 +359,34 @@ public class PlayerMovementScript : MonoBehaviour
 			{
 				m_PlayerBallTogether = false;
 				m_PlayerBallLinked = true;
+
+
+
+				if (m_BallAudioSource.clip == m_PlayerBallReleaseSound)
+				{
+					m_BallAudioSource.Stop();
+				}
+
+				m_BallAudioSource.clip = m_BallLevitateSound;
+				m_BallAudioSource.loop = true;
+				m_BallAudioSource.Play();
 			}
 			else if (m_PlayerBallLinked)
 			{
 				m_PlayerBallTogether = true;
 				m_PlayerBallLinked = false;
+
+
+
+				if (m_BallAudioSource.clip == m_BallLevitateSound)
+				{
+					m_BallAudioSource.Stop();
+				}
+
+				m_BallAudioSource.clip = m_PlayerBallReleaseSound;
+				m_BallAudioSource.loop = false;
+				m_BallAudioSource.Play();
+				
 			}
 			
 		}
@@ -361,6 +421,9 @@ public class PlayerMovementScript : MonoBehaviour
 		m_RecoveryTimer = 0;
 		m_PlayerDamaged = true;
 
+		m_PlayerAudioSource.clip = m_PlayerHitSound;
+		m_PlayerAudioSource.loop = false;
+		m_PlayerAudioSource.Play();
 
 		if (m_PlayerBallTogether)
 		{
@@ -371,7 +434,7 @@ public class PlayerMovementScript : MonoBehaviour
 		{
 			ReleaseBall();
 		}
-		
+
 
 		
 	}
@@ -388,6 +451,10 @@ public class PlayerMovementScript : MonoBehaviour
 		m_PlayerOnly = true;
 
 		m_DeathTimer = 0;
+
+		m_BallAudioSource.clip = m_PlayerRushAndDeathSound;
+		m_BallAudioSource.loop = false;
+		m_BallAudioSource.Play();
 	}
 
 	void RetrieveBall()
@@ -397,6 +464,11 @@ public class PlayerMovementScript : MonoBehaviour
 		m_PlayerBallTogether = true;
 		m_PlayerBallLinked = false;
 		m_PlayerOnly = false;
+
+		if (m_BallAudioSource.clip == m_PlayerRushAndDeathSound)
+		{
+			m_BallAudioSource.Stop();	
+		}
 	}
 
 

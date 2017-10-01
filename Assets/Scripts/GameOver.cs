@@ -13,7 +13,7 @@ public class GameOver : MonoBehaviour {
 		m_Animation = GetComponent<Animation>();
 		m_Animation.Play();
 		timer = 0f;
-		maxtimer = 2f;
+		maxtimer = 4f;
 	}
 	
 	 void Update()
