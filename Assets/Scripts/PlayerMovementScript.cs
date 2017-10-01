@@ -153,7 +153,7 @@ public class PlayerMovementScript : MonoBehaviour
 		}
 
 
-			if ( m_PlayerRigidbody2D.velocity.x != 0 && !m_PlayerWalking )
+			if ( m_PlayerRigidbody2D.velocity.x == 0 && m_HorizontalInput != 0 )
 			{
 				m_PlayerWalking = true;
 				m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
@@ -166,7 +166,7 @@ public class PlayerMovementScript : MonoBehaviour
 				}
 				
 			}
-			else if (m_PlayerRigidbody2D.velocity.x == 0 && m_PlayerWalking)
+			else if (m_PlayerRigidbody2D.velocity.x != 0 && m_HorizontalInput == 0)
 			{
 				m_PlayerWalking = false;
 				m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
@@ -224,6 +224,14 @@ public class PlayerMovementScript : MonoBehaviour
 		
 		// Check if the player is grounded (Assume the player is sliding by default).
 		m_PlayerGrounded = m_PlayerSliding = (m_RaycastHit2DArray.Length > 0) ? true: false;
+
+		// If the player is grounded, and is moving, the
+		if (m_RaycastHit2DArray.Length > 0 && m_HorizontalInput != 0 &&  m_PlayerAudioSource.clip == m_PlayerJumpSound )
+		{
+			m_PlayerAudioSource.clip = m_PlayerWalkSound;
+			m_PlayerAudioSource.loop = true;
+			m_PlayerAudioSource.Play();
+		}
 
 		// Check if the player is sliding.
 		foreach (RaycastHit2D hit in m_RaycastHit2DArray)
@@ -430,6 +438,10 @@ public class PlayerMovementScript : MonoBehaviour
 					m_PlayerAttacking = true;
 					m_AttackTimer = 0f;
 					m_PlayerAnimatorController.SetTrigger("Attack");
+
+					m_PlayerAudioSource.clip = m_PlayerPunchSound;
+					m_PlayerAudioSource.loop = false;
+					m_PlayerAudioSource.Play();
 				}
 			}
 		}
