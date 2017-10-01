@@ -23,6 +23,7 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 	public bool m_PatrollingLeft;
 	public bool m_PatrollingRight;
 
+	public Animator selfAnimator;
 
 	// Use this for initialization
 	void Start () 
@@ -36,6 +37,9 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 
 		//Move it to the left by default
 		m_PatrollingLeft = true;
+
+		selfAnimator = this.GetComponent<Animator> ();
+
 	}
 
 	
@@ -54,6 +58,7 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 		if(Vector3.Distance(transform.position, m_PlayerTransform.position) < m_AggroDistance){
 			m_Patrolling = false;
  			m_ChasingPlayer = true;
+			selfAnimator.SetBool ("Attacking", true);
 		//If outside the aggro range
 		}else{
 			//If we were chasing the player before
@@ -61,6 +66,7 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 				//We return to the initial position and cease the chase
 				m_ReturningToInitialPosition = true;
 				m_ChasingPlayer = false;
+				selfAnimator.SetBool ("Attacking", true);
 			}
 		}
 
@@ -81,6 +87,8 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 		{
 			//Move towards its direction
 			m_Rigidbody2D.velocity = Vector2.right * m_MovementSpeed * Mathf.Sign((m_PlayerTransform.position - transform.position).x);
+
+
 		}
 		else if(m_ReturningToInitialPosition)
 		{
