@@ -71,7 +71,7 @@ public class PlayerMovementScript : MonoBehaviour
 	private bool m_JumpInput;
 	private Vector3 m_MousePositionInWorld;
 	private bool m_ChangeStateInput;
-	private bool m_PlayerWalking;
+	private float m_OldHorizontalInput;
 	
 	
 
@@ -184,11 +184,11 @@ public class PlayerMovementScript : MonoBehaviour
 		}
 
 		// Set Walk Animation
-		if ( m_PlayerRigidbody2D.velocity.x == 0 && m_HorizontalInput != 0 )
+		if ( m_OldHorizontalInput == 0 && m_HorizontalInput != 0 )
 		{
 			m_PlayerAnimatorController.SetBool("Walking",true);
 		}
-		else if (m_PlayerRigidbody2D.velocity.x != 0 && m_HorizontalInput == 0)
+		else if (m_OldHorizontalInput != 0 && m_HorizontalInput == 0)
 		{
 			m_PlayerAnimatorController.SetBool("Walking",false);
 		}
@@ -200,7 +200,7 @@ public class PlayerMovementScript : MonoBehaviour
 		m_PlayerAnimatorController.SetBool("Death", m_PlayerDeath);
 		
 	
-		
+		m_OldHorizontalInput = m_HorizontalInput;
 	}
 
 	void FixedUpdate()
