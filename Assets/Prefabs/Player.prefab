@@ -37,10 +37,9 @@ GameObject:
   - component: {fileID: 4838862736226478}
   - component: {fileID: 212180444581263772}
   - component: {fileID: 95454668284358110}
-  - component: {fileID: 61372774477127550}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Player Attack
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772422828324728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 12.9, z: 1.32}
+  m_LocalPosition: {x: -28.47, y: -3.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4838862736226478}
@@ -125,6 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+<<<<<<< HEAD
 <<<<<<< HEAD
 --- !u!61 &61372774477127550
 BoxCollider2D:
@@ -180,6 +180,8 @@ PolygonCollider2D:
       - {x: 1.2907944, y: 0.39614296}
       - {x: 3.0744305, y: 1.1698437}
 >>>>>>> origin/master
+=======
+>>>>>>> parent of ac6d9a2... Commiteo
 --- !u!70 &70495683552115734
 CapsuleCollider2D:
   m_ObjectHideFlags: 1

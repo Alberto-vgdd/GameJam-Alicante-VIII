@@ -37,7 +37,7 @@ public class HelixRotateScript : MonoBehaviour {
 
         if (m_HelixActive)
         {
-            rotationZ += zspeedRotation*Time.deltaTime;
+            rotationZ += zspeedRotation;
             helix.localEulerAngles = new Vector3(0,0,rotationZ);
 
         }
