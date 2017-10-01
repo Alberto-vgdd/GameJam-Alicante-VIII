@@ -60,7 +60,7 @@ public class PlayerMovementScript : MonoBehaviour
 	private float m_AttackTimer;
 	private  bool m_PlayerAttacking;
 
-
+    public ParticleSystem dustParticles;
 
 	
 
@@ -300,6 +300,9 @@ public class PlayerMovementScript : MonoBehaviour
 				m_PlayerAudioSource.Play();
 
 				m_PlayerRigidbody2D.velocity = Vector2.right*m_PlayerRigidbody2D.velocity.x+Vector2.up*m_JumpSpeed;
+
+                dustParticles.transform.position = new Vector2(transform.position.x + 1.02f, transform.position.y - 0.2f);
+                dustParticles.Play();
 			}
 		}
 		
