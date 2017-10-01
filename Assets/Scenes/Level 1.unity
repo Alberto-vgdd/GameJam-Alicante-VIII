@@ -3373,67 +3373,12 @@ Prefab:
       objectReference: {fileID: 2122637477}
     - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
         type: 2}
-      propertyPath: m_PlayerAudioSource
-      value: 
-      objectReference: {fileID: 1802573305}
-    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
       propertyPath: m_BallAudioSource
       value: 
       objectReference: {fileID: 1528324890}
-    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
-      propertyPath: m_PlayerJumpSound
-      value: 
-      objectReference: {fileID: 8300000, guid: bdcf1390d9fd6d845a63338bd3ad3eeb, type: 3}
-    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
-      propertyPath: m_PlayerRushAndDeathSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ae7df37cec2dc804d8881c4c6a0118cd, type: 3}
-    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
-      propertyPath: m_PlayerPunchSound
-      value: 
-      objectReference: {fileID: 8300000, guid: ccd17d1a73f00094aa82a4e02dbda23c, type: 3}
-    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
-      propertyPath: m_BallLevitateSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 97af2d54b50638642ab21ba26fd3aa77, type: 3}
-    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
-      propertyPath: m_PlayerWalkSound
-      value: 
-      objectReference: {fileID: 8300000, guid: b2a11a3f004e88d42a4e0c4d0697397d, type: 3}
-    - target: {fileID: 82142237042005808, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
-      propertyPath: m_PlayerHitSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 1f293d310956cdc4f81a7e44d84a2909, type: 3}
-    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
-      propertyPath: m_PlayerBallRelease
-      value: 
-      objectReference: {fileID: 8300000, guid: eca7bcbe0cc102941a7221c14e4ce331, type: 3}
-    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
-        type: 2}
-      propertyPath: m_PlayerBallReleaseSound
-      value: 
-      objectReference: {fileID: 8300000, guid: eca7bcbe0cc102941a7221c14e4ce331, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
   m_IsPrefabParent: 0
---- !u!82 &1802573305 stripped
-AudioSource:
-  m_PrefabParentObject: {fileID: 82142237042005808, guid: 0a020f2727d1450468bf9130c2739a5c,
-    type: 2}
-  m_PrefabInternal: {fileID: 1802573304}
 --- !u!1 &1930939138
 GameObject:
   m_ObjectHideFlags: 0
