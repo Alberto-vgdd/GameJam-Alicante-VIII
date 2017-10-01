@@ -135,54 +135,9 @@ public class PlayerMovementScript : MonoBehaviour
 		Click();
 
 
-		// Update animations
-		m_PlayerAnimatorController.SetBool("Together",m_PlayerBallTogether);
-
-		if (!m_PlayerDeath && !m_PlayerAttacking)
-		{
-			if (m_HorizontalInput > 0  && m_SpriteTransform.localScale.x < 0)
-			{
-				m_SpriteTransform.localScale = new Vector3(1,1,1);
-				m_SpriteTransform.localPosition -= Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
-			}
-			if (m_HorizontalInput < 0 && m_SpriteTransform.localScale.x > 0)
-			{	
-				m_SpriteTransform.localScale = new Vector3(-1,1,1); 
-				m_SpriteTransform.localPosition += Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
-			}
-		}
-
-		if (!m_PlayerDeath && !m_PlayerAttacking)
-		{
-			if ( m_PlayerRigidbody2D.velocity.x == 0 && m_HorizontalInput != 0 )
-			{
-				m_PlayerWalking = true;
-				m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
-
-				if (m_PlayerGrounded) 
-				{
-					m_PlayerAudioSource.clip = m_PlayerWalkSound;
-					m_PlayerAudioSource.loop = true;
-					m_PlayerAudioSource.Play();
-				}
-				
-			}
-			else if (m_PlayerRigidbody2D.velocity.x != 0 && m_HorizontalInput == 0)
-			{
-				m_PlayerWalking = false;
-				m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
-
-				if (m_PlayerAudioSource.clip == m_PlayerWalkSound )
-				{
-					m_PlayerAudioSource.Stop();
-				}
-			}
-		}
-		
-
-		m_PlayerAnimatorController.SetBool("Grounded",m_PlayerGrounded);
 
 
+		// Timers
 		if(m_PlayerOnly)
 		{
 			m_DeathTimer += Time.deltaTime;
@@ -204,6 +159,42 @@ public class PlayerMovementScript : MonoBehaviour
 			}
 		}
 
+
+
+
+
+		// Update animations
+		m_PlayerAnimatorController.SetBool("Together",m_PlayerBallTogether);
+
+		// Flip sprites
+		if (!m_PlayerDeath && !m_PlayerAttacking)
+		{
+			if (m_HorizontalInput > 0  && m_SpriteTransform.localScale.x < 0)
+			{
+				m_SpriteTransform.localScale = new Vector3(1,1,1);
+				m_SpriteTransform.localPosition -= Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
+			}
+			if (m_HorizontalInput < 0 && m_SpriteTransform.localScale.x > 0)
+			{	
+				m_SpriteTransform.localScale = new Vector3(-1,1,1); 
+				m_SpriteTransform.localPosition += Vector3.right*m_PlayerCapsuleCollider2D.size.x;  
+			}
+		}
+
+		// Set Walk Animation
+		if ( m_PlayerRigidbody2D.velocity.x == 0 && m_HorizontalInput != 0 )
+		{
+			m_PlayerAnimatorController.SetBool("Walking",true);
+		}
+		else if (m_PlayerRigidbody2D.velocity.x != 0 && m_HorizontalInput == 0)
+		{
+			m_PlayerAnimatorController.SetBool("Walking",false);
+		}
+
+		// Set Grounded Animation
+		m_PlayerAnimatorController.SetBool("Grounded",m_PlayerGrounded);
+
+		// Set Death animation
 		m_PlayerAnimatorController.SetBool("Death", m_PlayerDeath);
 		
 	
@@ -227,13 +218,6 @@ public class PlayerMovementScript : MonoBehaviour
 		// Check if the player is grounded (Assume the player is sliding by default).
 		m_PlayerGrounded = m_PlayerSliding = (m_RaycastHit2DArray.Length > 0) ? true: false;
 
-		// If the player is grounded, and is moving, the
-		if (m_RaycastHit2DArray.Length > 0 && m_HorizontalInput != 0 &&  m_PlayerAudioSource.clip == m_PlayerJumpSound )
-		{
-			m_PlayerAudioSource.clip = m_PlayerWalkSound;
-			m_PlayerAudioSource.loop = true;
-			m_PlayerAudioSource.Play();
-		}
 
 		// Check if the player is sliding.
 		foreach (RaycastHit2D hit in m_RaycastHit2DArray)
@@ -261,6 +245,27 @@ public class PlayerMovementScript : MonoBehaviour
 			}
 		}
 		
+		// Set Walk Sound
+		if ( m_PlayerRigidbody2D.velocity.x == 0 && m_HorizontalInput != 0 )
+		{
+
+			if (m_PlayerGrounded && !m_PlayerAttacking && !m_PlayerDeath) 
+			{
+				m_PlayerAudioSource.clip = m_PlayerWalkSound;
+				m_PlayerAudioSource.loop = true;
+				m_PlayerAudioSource.Play();
+			}
+			
+		}
+		else if (m_PlayerRigidbody2D.velocity.x != 0 && m_HorizontalInput == 0)
+		{
+
+			if (m_PlayerAudioSource.clip == m_PlayerWalkSound && !m_PlayerAttacking && !m_PlayerDeath )
+			{
+				m_PlayerAudioSource.Stop();
+			}
+		}
+
 		
 		// Move the player
 		if (!m_PlayerDeath && !m_PlayerAttacking)
@@ -292,6 +297,7 @@ public class PlayerMovementScript : MonoBehaviour
 				m_PlayerAudioSource.clip = m_PlayerJumpSound;
 				m_PlayerAudioSource.loop = false;
 				m_PlayerAudioSource.Play();
+
 				m_PlayerRigidbody2D.velocity = Vector2.right*m_PlayerRigidbody2D.velocity.x+Vector2.up*m_JumpSpeed;
 			}
 		}

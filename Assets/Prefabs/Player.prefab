@@ -277,7 +277,6 @@ MonoBehaviour:
   m_PlayerBallReleaseSound: {fileID: 8300000, guid: eca7bcbe0cc102941a7221c14e4ce331,
     type: 3}
   m_AttackDuration: 1
-  m_PlayerAttacking: 0
 --- !u!212 &212180444581263772
 SpriteRenderer:
   m_ObjectHideFlags: 1
