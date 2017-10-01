@@ -5,7 +5,7 @@ using UnityEngine;
 public class HelixRotateScript : MonoBehaviour {
 
 
-    float rotationZ = 325f;
+    float rotationZ = 90f;
     public Transform helix;
 
     [Header("Click Position Script")]

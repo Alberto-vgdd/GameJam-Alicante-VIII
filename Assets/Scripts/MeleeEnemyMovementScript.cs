@@ -123,10 +123,13 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 			//Move to the left
 			if(m_PatrollingLeft){
 				m_Rigidbody2D.velocity = Vector2.right * -m_MovementSpeed;
+                //m_Rigidbody2D.transform.localScale = new Vector3(1,1,1);
+              
 			//Move to the right
 			}else{
 				m_Rigidbody2D.velocity = Vector2.right * m_MovementSpeed;
-			}
+                //m_Rigidbody2D.transform.localScale = new Vector3(-1, 1, 1);
+            }
 
 			//If we have moved beyond the patrol limit, reverse the movement direction
 			if(transform.position.x < m_LeftPatrolLimit.x){

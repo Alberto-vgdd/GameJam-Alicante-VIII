@@ -146,15 +146,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f926430c29dd71a40bb6bd3847b03994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alive: 1
   m_BulletObject: {fileID: 1528800254863686, guid: 4b2fa0fb638b6634b985d78cefb41783,
     type: 2}
   m_PlayerTransform: {fileID: 0}
   direction: 
-  m_AggroDistance: 25
+  m_AggroDistance: 30
+  m_AggroMove: 10
   m_InRange: 0
   m_InstantiationPosition: {fileID: 4042963228642554}
   m_MovementSpeed: 3.5
-  animator: {fileID: 0}
   m_TimeBetweenShots: 3
 --- !u!212 &212098897900406464
 SpriteRenderer:

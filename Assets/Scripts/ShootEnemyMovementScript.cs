@@ -13,6 +13,7 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 	public string direction;
 
 	public float m_AggroDistance;
+    public float m_AggroMove;
 	public bool m_InRange;
 
 	public Transform m_InstantiationPosition;
@@ -68,7 +69,7 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 	{
 		if(m_InRange){
 
-            if (Vector3.Distance(m_Rigidbody2D.transform.position, m_PlayerTransform.position) > 18) {
+            if (Vector3.Distance(m_Rigidbody2D.transform.position, m_PlayerTransform.position) > m_AggroMove) {
                 if (m_Rigidbody2D.transform.position.x < m_PlayerTransform.position.x) {
                     m_Rigidbody2D.velocity = Vector2.right * m_MovementSpeed;
                     //Otherwise
