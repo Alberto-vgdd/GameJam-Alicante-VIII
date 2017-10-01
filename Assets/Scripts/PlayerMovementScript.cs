@@ -54,7 +54,10 @@ public class PlayerMovementScript : MonoBehaviour
 	public AudioClip m_PlayerWalkSound;
 	public AudioClip m_PlayerBallReleaseSound;
 	
-
+	[Header("Player Attack")]
+	public float m_AttackDuration;
+	private float m_AttackTimer;
+	public  bool m_PlayerAttacking;
 
 
 
@@ -105,6 +108,9 @@ public class PlayerMovementScript : MonoBehaviour
 	private float m_DeathTimer;
 	private bool m_PlayerDeath;
 
+
+
+
 	void Start () 
 	{
 		m_PlayerOnly = false;
@@ -146,27 +152,31 @@ public class PlayerMovementScript : MonoBehaviour
 			}
 		}
 
-		if (m_PlayerRigidbody2D.velocity.x != 0 && !m_PlayerWalking)
-		{
-			m_PlayerWalking = true;
-			m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
 
-			m_PlayerAudioSource.clip = m_PlayerWalkSound;
-			m_PlayerAudioSource.loop = true;
-			m_PlayerAudioSource.Play();
-		}
-		else if (m_PlayerRigidbody2D.velocity.x == 0 && m_PlayerWalking)
-		{
-			m_PlayerWalking = false;
-			m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
-
-			if (m_PlayerAudioSource.clip == m_PlayerWalkSound)
+			if ( m_PlayerRigidbody2D.velocity.x != 0 && !m_PlayerWalking )
 			{
-				m_PlayerAudioSource.Stop();
-			}
+				m_PlayerWalking = true;
+				m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
 
-			
+				if (m_PlayerGrounded) 
+				{
+					m_PlayerAudioSource.clip = m_PlayerWalkSound;
+					m_PlayerAudioSource.loop = true;
+					m_PlayerAudioSource.Play();
+				}
+				
+			}
+			else if (m_PlayerRigidbody2D.velocity.x == 0 && m_PlayerWalking)
+			{
+				m_PlayerWalking = false;
+				m_PlayerAnimatorController.SetBool("Walking",m_PlayerWalking);
+
+				if (m_PlayerAudioSource.clip == m_PlayerWalkSound )
+				{
+					m_PlayerAudioSource.Stop();
+				}
 		}
+		
 
 		m_PlayerAnimatorController.SetBool("Grounded",m_PlayerGrounded);
 
@@ -182,16 +192,20 @@ public class PlayerMovementScript : MonoBehaviour
 			}
 		}
 
+		if (m_PlayerAttacking)
+		{
+			m_AttackTimer += Time.deltaTime;
+
+			if (m_AttackTimer >= m_AttackDuration)
+			{
+				m_PlayerAttacking = false;
+			}
+		}
+
 		m_PlayerAnimatorController.SetBool("Death", m_PlayerDeath);
 		
 	
 		
-	}
-
-	public void ManageAudio()
-	{
-		
-
 	}
 
 	void FixedUpdate()
@@ -239,7 +253,7 @@ public class PlayerMovementScript : MonoBehaviour
 		
 		
 		// Move the player
-		if (!m_PlayerDeath)
+		if (!m_PlayerDeath && !m_PlayerAttacking)
 		{
 			if (m_PlayerBallTogether)
 			{
@@ -261,7 +275,7 @@ public class PlayerMovementScript : MonoBehaviour
 
 
 		//Manage the jump
-		if (m_PlayerGrounded && m_JumpInput && !m_PlayerDeath)
+		if (m_PlayerGrounded && m_JumpInput && (!m_PlayerDeath && !m_PlayerAttacking))
 		{
 			if (!m_PlayerSliding)
 			{
@@ -353,7 +367,7 @@ public class PlayerMovementScript : MonoBehaviour
 	
 	void ChangeState()
 	{
-		if (m_ChangeStateInput)
+		if (m_ChangeStateInput && !m_PlayerAttacking)
 		{
 			if (m_PlayerBallTogether)
 			{
@@ -411,7 +425,12 @@ public class PlayerMovementScript : MonoBehaviour
 			}
 			else if(m_PlayerBallTogether)
 			{
-
+				if (!m_PlayerAttacking && m_PlayerGrounded)
+				{
+					m_PlayerAttacking = true;
+					m_AttackTimer = 0f;
+					m_PlayerAnimatorController.SetTrigger("Attack");
+				}
 			}
 		}
 	}

@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772422828324728}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.7, y: 2.3, z: 0}
+  m_LocalPosition: {x: -28.47, y: -3.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4838862736226478}
@@ -119,7 +119,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -236,16 +236,22 @@ MonoBehaviour:
   m_BallSmooth: 0.05
   m_MaximumBallDistance: 15
   m_ClickTime: 0.5
-  m_RecoveryTime: 0.5
+  m_RecoveryTime: 1
   m_TimeBeforeDeath: 3
   m_GameOverCanvas: {fileID: 0}
-  m_PlayerAudioSource: {fileID: 0}
+  m_PlayerAudioSource: {fileID: 82142237042005808}
   m_BallAudioSource: {fileID: 0}
-  m_PlayerJumpSound: {fileID: 0}
-  m_PlayerRushAndDeathSound: {fileID: 0}
-  m_PlayerPunchSound: {fileID: 0}
-  m_BallLevitateSound: {fileID: 0}
-  m_PlayerWalkSound: {fileID: 0}
+  m_PlayerJumpSound: {fileID: 8300000, guid: bdcf1390d9fd6d845a63338bd3ad3eeb, type: 3}
+  m_PlayerRushAndDeathSound: {fileID: 8300000, guid: ae7df37cec2dc804d8881c4c6a0118cd,
+    type: 3}
+  m_PlayerPunchSound: {fileID: 8300000, guid: ccd17d1a73f00094aa82a4e02dbda23c, type: 3}
+  m_PlayerHitSound: {fileID: 8300000, guid: 1f293d310956cdc4f81a7e44d84a2909, type: 3}
+  m_BallLevitateSound: {fileID: 8300000, guid: 97af2d54b50638642ab21ba26fd3aa77, type: 3}
+  m_PlayerWalkSound: {fileID: 8300000, guid: b2a11a3f004e88d42a4e0c4d0697397d, type: 3}
+  m_PlayerBallReleaseSound: {fileID: 8300000, guid: eca7bcbe0cc102941a7221c14e4ce331,
+    type: 3}
+  m_AttackDuration: 1
+  m_PlayerAttacking: 0
 --- !u!212 &212180444581263772
 SpriteRenderer:
   m_ObjectHideFlags: 1
