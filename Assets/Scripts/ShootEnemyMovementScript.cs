@@ -16,6 +16,8 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 	public Transform m_InstantiationPosition;
     public float m_MovementSpeed;
 
+    private Animator anim;
+
     float frames;
 	public float m_TimeBetweenShots;
 
@@ -23,6 +25,7 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 	void Start () {
 		
 		m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
 	}
 
 	void Update () 
@@ -42,9 +45,16 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 		}
 
 		if(Vector3.Distance(transform.position, m_PlayerTransform.position) < m_AggroDistance)
-			m_InRange = true;
-		else
-			m_InRange = false;
+        {
+            m_InRange = true;
+            anim.SetBool("Attack", true);
+        }
+        else
+        {
+            m_InRange = false;
+            anim.SetBool("Attack", false);
+        }
+			
 		
 	}
 
