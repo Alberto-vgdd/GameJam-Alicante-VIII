@@ -2835,14 +2835,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1174831496}
-  m_LocalRotation: {x: -0, y: -0, z: 0.3007059, w: -0.953717}
-  m_LocalPosition: {x: -9.489998, y: -3.4800034, z: -0.1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.24878937, w: -0.96855766}
+  m_LocalPosition: {x: -10.52, y: -4.7, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1573123249}
   m_Father: {fileID: 553920628}
   m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 325}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 388.812}
 --- !u!61 &1174831499
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3692,7 +3692,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   helix: {fileID: 1174831498}
   m_ClickPositionScript: {fileID: 1573123250}
-  zspeedRotation: 0.2
+  zspeedRotation: 0
 --- !u!1 &1579602035
 GameObject:
   m_ObjectHideFlags: 0
@@ -3847,7 +3847,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4003988919346714, guid: ef2085c462f3603409ad49ee9f814e17, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 148.95
+      value: 150.13
       objectReference: {fileID: 0}
     - target: {fileID: 4003988919346714, guid: ef2085c462f3603409ad49ee9f814e17, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3879,6 +3879,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4003988919346714, guid: ef2085c462f3603409ad49ee9f814e17, type: 2}
       propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114098244459526464, guid: ef2085c462f3603409ad49ee9f814e17,
+        type: 2}
+      propertyPath: m_AggroDistance
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114098244459526464, guid: ef2085c462f3603409ad49ee9f814e17,
+        type: 2}
+      propertyPath: m_MovementSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114098244459526464, guid: ef2085c462f3603409ad49ee9f814e17,
+        type: 2}
+      propertyPath: m_Patrolling
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
