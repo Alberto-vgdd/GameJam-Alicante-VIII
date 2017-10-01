@@ -150,6 +150,8 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
         {
             alive = false;
             selfAnimator.SetTrigger("Died");
+            GetComponent<Rigidbody2D>().isKinematic = true;
+            GetComponent<BoxCollider2D>().enabled = false;
         }
     }
 
