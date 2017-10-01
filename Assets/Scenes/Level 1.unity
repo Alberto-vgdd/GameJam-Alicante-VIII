@@ -274,7 +274,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4185612042335548, guid: 847d3c0f5ecbc3e44a76d0ca2b4dcb8f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.1
+      value: 13.06
       objectReference: {fileID: 0}
     - target: {fileID: 4185612042335548, guid: 847d3c0f5ecbc3e44a76d0ca2b4dcb8f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -2555,7 +2555,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1856446384}
   m_LocalRotation: {x: -0, y: -0, z: 0.00000016391276, w: 1}
-  m_LocalPosition: {x: 1.9999999, y: 0.8, z: 1}
+  m_LocalPosition: {x: 1.9999999, y: 0.8, z: 12.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 515756607}
@@ -2569,7 +2569,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 963645755}
   m_LocalRotation: {x: -0, y: -0, z: 0.00000016391276, w: 1}
-  m_LocalPosition: {x: 2.0000002, y: 2.4, z: 1}
+  m_LocalPosition: {x: 2.0000002, y: 2.4, z: 12.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 515756607}
@@ -3552,7 +3552,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4185612042335548, guid: 847d3c0f5ecbc3e44a76d0ca2b4dcb8f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.1
+      value: 13.06
       objectReference: {fileID: 0}
     - target: {fileID: 4185612042335548, guid: 847d3c0f5ecbc3e44a76d0ca2b4dcb8f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3863,6 +3863,11 @@ Prefab:
       propertyPath: m_LocalPosition.y
       value: 2.4
       objectReference: {fileID: 0}
+    - target: {fileID: 114410313975672316, guid: 6a2ac720444ec78498351870a0ec79c4,
+        type: 2}
+      propertyPath: m_DoorSmoothTime
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a2ac720444ec78498351870a0ec79c4, type: 2}
   m_IsPrefabParent: 0
@@ -4112,7 +4117,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   helix: {fileID: 1174831498}
   m_ClickPositionScript: {fileID: 1573123250}
-  zspeedRotation: -5
+  zspeedRotation: -10
 --- !u!1 &1579602035
 GameObject:
   m_ObjectHideFlags: 0

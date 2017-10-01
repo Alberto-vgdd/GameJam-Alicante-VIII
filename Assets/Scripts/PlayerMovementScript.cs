@@ -71,7 +71,7 @@ public class PlayerMovementScript : MonoBehaviour
 	private bool m_JumpInput;
 	private Vector3 m_MousePositionInWorld;
 	private bool m_ChangeStateInput;
-	private bool m_PlayerWalking;
+	private float m_OldHorizontalInput;
 	
 	
 
@@ -88,6 +88,7 @@ public class PlayerMovementScript : MonoBehaviour
 	// Player Grounded variables
 	private Vector3 m_PlayerCenter;
 	private bool m_PlayerGrounded;
+	private bool m_OldPlayerGrounded;
 	private bool m_PlayerSliding;
 	RaycastHit2D[] m_RaycastHit2DArray;
 	private Vector2 m_FloorNormal;
@@ -183,11 +184,11 @@ public class PlayerMovementScript : MonoBehaviour
 		}
 
 		// Set Walk Animation
-		if ( m_PlayerRigidbody2D.velocity.x == 0 && m_HorizontalInput != 0 )
+		if ( m_OldHorizontalInput == 0 && m_HorizontalInput != 0 )
 		{
 			m_PlayerAnimatorController.SetBool("Walking",true);
 		}
-		else if (m_PlayerRigidbody2D.velocity.x != 0 && m_HorizontalInput == 0)
+		else if (m_OldHorizontalInput != 0 && m_HorizontalInput == 0)
 		{
 			m_PlayerAnimatorController.SetBool("Walking",false);
 		}
@@ -199,7 +200,7 @@ public class PlayerMovementScript : MonoBehaviour
 		m_PlayerAnimatorController.SetBool("Death", m_PlayerDeath);
 		
 	
-		
+		m_OldHorizontalInput = m_HorizontalInput;
 	}
 
 	void FixedUpdate()
@@ -218,6 +219,12 @@ public class PlayerMovementScript : MonoBehaviour
 		
 		// Check if the player is grounded (Assume the player is sliding by default).
 		m_PlayerGrounded = m_PlayerSliding = (m_RaycastHit2DArray.Length > 0) ? true: false;
+
+		if (!m_OldPlayerGrounded && m_PlayerGrounded)
+		{
+            dustParticles.transform.position = new Vector2(transform.position.x + 1.02f, transform.position.y - 0.2f);
+            dustParticles.Play();
+        }
 
 
 		// Check if the player is sliding.
@@ -384,7 +391,8 @@ public class PlayerMovementScript : MonoBehaviour
 		}
 		
 		
-		
+		//This is for the Aurenigga
+		m_OldPlayerGrounded = m_PlayerGrounded;
 	}
 	
 	void ChangeState()
