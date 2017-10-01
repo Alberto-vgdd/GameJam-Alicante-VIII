@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ShootEnemyMovementScript : MonoBehaviour {
 
+    public bool alive = true;
+
 	Rigidbody2D m_Rigidbody2D;
 
 	public GameObject m_BulletObject;
@@ -30,8 +32,12 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 
 	void Update () 
 	{
-		CheckDistance();
-		Shoot();
+        if (alive)
+        {
+            CheckDistance();
+            Shoot();
+        }
+		
 	}
 
 	void CheckDistance(){
@@ -83,6 +89,14 @@ public class ShootEnemyMovementScript : MonoBehaviour {
 
 	}
 
-	
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player Attack")
+        {
+            alive = false;
+            anim.SetTrigger("Die");
+        }
+    }
+
 
 }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class MeleeEnemyMovementScript : MonoBehaviour {
 
-	Rigidbody2D m_Rigidbody2D;
+    public bool alive = true;
+
+    Rigidbody2D m_Rigidbody2D;
 
 	[Header("Aggro")]
 	public float m_AggroDistance;
@@ -46,7 +48,7 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-		CheckAggro();
+        if(alive) CheckAggro();
 
 	}
 
@@ -76,7 +78,7 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		Move();
+		if (alive) Move();
 	}
 
 
@@ -141,6 +143,15 @@ public class MeleeEnemyMovementScript : MonoBehaviour {
 
 	
 		}
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Player Attack")
+        {
+            alive = false;
+            selfAnimator.SetTrigger("Died");
+        }
+    }
 
 }
 
