@@ -3896,6 +3896,26 @@ Prefab:
       propertyPath: m_Patrolling
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 61057352558750028, guid: ef2085c462f3603409ad49ee9f814e17,
+        type: 2}
+      propertyPath: m_Size.x
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 61057352558750028, guid: ef2085c462f3603409ad49ee9f814e17,
+        type: 2}
+      propertyPath: m_Offset.x
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 61057352558750028, guid: ef2085c462f3603409ad49ee9f814e17,
+        type: 2}
+      propertyPath: m_Size.y
+      value: 2.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 61057352558750028, guid: ef2085c462f3603409ad49ee9f814e17,
+        type: 2}
+      propertyPath: m_Offset.y
+      value: -0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef2085c462f3603409ad49ee9f814e17, type: 2}
   m_IsPrefabParent: 0
@@ -4095,6 +4115,21 @@ Prefab:
       propertyPath: m_BallAudioSource
       value: 
       objectReference: {fileID: 1528324890}
+    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
+        type: 2}
+      propertyPath: m_TimeBeforeDeath
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
+        type: 2}
+      propertyPath: m_PlayerSpriteRendered
+      value: 
+      objectReference: {fileID: 2003705085}
+    - target: {fileID: 61372774477127550, guid: 0a020f2727d1450468bf9130c2739a5c,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
   m_IsPrefabParent: 0
@@ -4169,6 +4204,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!212 &2003705085 stripped
+SpriteRenderer:
+  m_PrefabParentObject: {fileID: 212180444581263772, guid: 0a020f2727d1450468bf9130c2739a5c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1802573304}
 --- !u!1 &2006227160
 GameObject:
   m_ObjectHideFlags: 0

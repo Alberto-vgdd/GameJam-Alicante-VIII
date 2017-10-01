@@ -8,6 +8,7 @@ public class PlayerMovementScript : MonoBehaviour
 	public Transform m_PlayerTransform;
 	public Rigidbody2D m_PlayerRigidbody2D;
 	public CapsuleCollider2D m_PlayerCapsuleCollider2D;
+	public SpriteRenderer m_PlayerSpriteRendered;
 
 	[Header("Animation Components")]
 	public Transform m_SpriteTransform;
@@ -310,10 +311,12 @@ public class PlayerMovementScript : MonoBehaviour
 				m_PlayerRigidbody2D.velocity = m_MovementSpeed*m_DamageDirection + Vector2.up*m_PlayerRigidbody2D.velocity.y;
 			}
 				
+			m_PlayerSpriteRendered.enabled = !m_PlayerSpriteRendered.enabled;
 
 			m_RecoveryTimer += Time.fixedDeltaTime;
 			if (m_RecoveryTimer >= m_RecoveryTime)
 			{
+				m_PlayerSpriteRendered.enabled = true;
 				m_PlayerDamaged = false;
 			}
 	
