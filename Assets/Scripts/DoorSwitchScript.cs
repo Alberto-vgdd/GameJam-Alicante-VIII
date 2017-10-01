@@ -17,6 +17,9 @@ public class DoorSwitchScript : MonoBehaviour
 	[Header("Click Position Script")]
 	public ClickPositionScript m_ClickPositionScript;
 
+	[Header("Door Audio Source")]
+	public AudioSource m_DoorAudioSource;
+
 
 	private bool m_DoorOpening;
 
@@ -35,8 +38,9 @@ public class DoorSwitchScript : MonoBehaviour
 
 	void Update () 
 	{
-		if (m_ClickPositionScript.HasBeenClicked())
+		if (m_ClickPositionScript.HasBeenClicked() && !m_DoorOpening)
 		{
+			m_DoorAudioSource.Play();
 			m_DoorOpening = true;
 		}
 
