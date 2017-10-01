@@ -24,7 +24,7 @@ public class CameraMovementScript : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		m_CameraTransform.position = m_PlayerTransfrom.position+new Vector3(m_PlayerCapsuleCollider2D.offset.x,m_PlayerCapsuleCollider2D.offset.y);
+		//m_CameraTransform.position = m_PlayerTransfrom.position+new Vector3(m_PlayerCapsuleCollider2D.offset.x,m_PlayerCapsuleCollider2D.offset.y);
 	}
 	
 	// Update is called once per frame
