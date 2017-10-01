@@ -88,6 +88,7 @@ public class PlayerMovementScript : MonoBehaviour
 	// Player Grounded variables
 	private Vector3 m_PlayerCenter;
 	private bool m_PlayerGrounded;
+	private bool m_OldPlayerGrounded;
 	private bool m_PlayerSliding;
 	RaycastHit2D[] m_RaycastHit2DArray;
 	private Vector2 m_FloorNormal;
@@ -218,6 +219,11 @@ public class PlayerMovementScript : MonoBehaviour
 		
 		// Check if the player is grounded (Assume the player is sliding by default).
 		m_PlayerGrounded = m_PlayerSliding = (m_RaycastHit2DArray.Length > 0) ? true: false;
+
+		if (!m_OldPlayerGrounded && m_PlayerGrounded)
+		{
+			
+		}
 
 
 		// Check if the player is sliding.
@@ -384,7 +390,8 @@ public class PlayerMovementScript : MonoBehaviour
 		}
 		
 		
-		
+		//This is for the Aurenigga
+		m_OldPlayerGrounded = m_PlayerGrounded;
 	}
 	
 	void ChangeState()
