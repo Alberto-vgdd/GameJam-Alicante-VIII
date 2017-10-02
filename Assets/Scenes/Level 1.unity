@@ -4813,6 +4813,11 @@ Prefab:
       propertyPath: dustParticles
       value: 
       objectReference: {fileID: 628358515}
+    - target: {fileID: 114878080883659176, guid: 0a020f2727d1450468bf9130c2739a5c,
+        type: 2}
+      propertyPath: m_CrosshairTexture2D
+      value: 
+      objectReference: {fileID: 2800000, guid: 63d6636b4c720f04ca95958984191a0f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0a020f2727d1450468bf9130c2739a5c, type: 2}
   m_IsPrefabParent: 0

@@ -56,6 +56,7 @@ public class PlayerMovementScript : MonoBehaviour
 	public AudioClip m_PlayerBallReleaseSound;
 	
 	[Header("Player Attack")]
+	public Texture2D m_CrosshairTexture2D;
 	public float m_AttackDuration;
 	private float m_AttackTimer;
 	private  bool m_PlayerAttacking;
@@ -118,6 +119,7 @@ public class PlayerMovementScript : MonoBehaviour
 		m_PlayerOnly = false;
 		m_PlayerBallLinked = false;
 		m_PlayerBallTogether = true;
+		Cursor.SetCursor(m_CrosshairTexture2D, Vector2.zero, CursorMode.Auto);
 	}
 	
 	void Update () 
@@ -414,6 +416,9 @@ public class PlayerMovementScript : MonoBehaviour
 				m_BallAudioSource.clip = m_BallLevitateSound;
 				m_BallAudioSource.loop = true;
 				m_BallAudioSource.Play();
+
+
+				Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 			}
 			else if (m_PlayerBallLinked)
 			{
@@ -431,6 +436,7 @@ public class PlayerMovementScript : MonoBehaviour
 				m_BallAudioSource.loop = false;
 				m_BallAudioSource.Play();
 				
+				Cursor.SetCursor(m_CrosshairTexture2D, Vector2.zero, CursorMode.Auto);
 			}
 			
 		}
